@@ -1,0 +1,2628 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))();
+local Window = Library.CreateLib("Wizard.Lua Private", "GrapeTheme");
+local farmTab = Window:NewTab("Farm");
+local farmSection = farmTab:NewSection("Farm");
+local MTab = Window:NewTab("Target");
+local MSection = MTab:NewSection("Target");
+local QTab = Window:NewTab("Player");
+local QSection = QTab:NewSection("Player");
+local VTab = Window:NewTab("Misc");
+local VSection = VTab:NewSection("Misc");
+local KTab = Window:NewTab("Keys Menu");
+local KSection = KTab:NewSection("Keys Menu");
+local TTab = Window:NewTab("Locations Menu");
+local TSection = TTab:NewSection("Locations Menu");
+local GTab = Window:NewTab("Scripts Menu");
+local GSection = GTab:NewSection("Scripts Menu");
+_G.CToggle = false;
+_G.metalskin = false;
+_G.LOCALPLAYER = game.Players.LocalPlayer.Name;
+_G.bring = false;
+player = game.Players.LocalPlayer;
+breakvelocity = function()
+  spawn(function()
+    local BeenASecond, V3 = false, Vector3.new(0, 0, 0);
+    delay(1, function()
+      BeenASecond = true;
+    end);
+    while not BeenASecond do
+      for _, v in ipairs(player.Character:GetDescendants()) do
+        if v.IsA(v, "BasePart") then
+          v.Velocity, v.RotVelocity = V3, V3;
+        end
+      end
+      wait();
+    end
+  end);
+end;
+plrlist = {}
+plrnum = 0;
+getNearPlayer = function(maxDistance)
+  pcall(function()
+    if (player and player.Character) then
+      local playerLocation = player.Character.HumanoidRootPart.Position;
+      for i, v in pairs(game.Players:GetChildren()) do
+        if (v.Character and (v.Character.Health ~= 0)) then
+          local location = v.Character.HumanoidRootPart.Position;
+          if (((location - playerLocation).Magnitude <= maxDistance) and (v.Character.Health ~= 0)) then
+            pcall(function()
+              if (v == player) then
+              else
+                local teleexist = game:GetService("Workspace")[v.Name].HumanoidRootPart;
+                if (not teleexist:FindFirstChild("telekinesisPosition") and (v.Character.Health ~= 0)) then
+                  
+                elseif (v ~= player) then
+                  plrnum += 1
+                  table.insert(plrlist, v.Character);
+                end
+              end
+            end);
+          end
+        end
+      end
+    end
+  end);
+end;
+GetList = function()
+  x = 1;
+  Plyr = game.Players:GetPlayers();
+  dropdown = {};
+  for value in pairs(Plyr) do
+    PLR = Plyr[x].Name;
+    x += 1
+    table.insert(dropdown, PLR);
+  end
+end;
+GetList = function()
+  x = 1;
+  Plyr = game.Players:GetPlayers();
+  dropdown = {};
+  for value in pairs(Plyr) do
+	  PLR = Plyr[x].Name;
+    x += 1
+    table.insert(dropdown, PLR);
+  end
+end;
+TSection:NewDropdown("Safezone Locations", "", {"Bar","Building Park","City Square","Evil Lair","Feild","Hero HQ","Hero Lair","Motel","Mountain","Mountain-2","Park","Plains","Prison"}, function(currentOption)
+  _G.selectedstat = currentOption;
+end);
+TSection:NewDropdown("Other Locations", "", {"Contruction Building","Corner-1","Corner-2","Corner-3","Corner-4","Ignite Tower","Military Base","Mountain Hole","Police Department","Cave"}, function(currentOption)
+  _G.selectedstat = currentOption;
+end);
+TSection:NewDropdown("Unfortunate Locations", "", {"Unfortunate Spot (Secret Area)","Unfortunate Spot (In Building)", "Unfortunate Spot (Trap)","Unfortunate Spot (Space)","Unfortunate Spot (Under Map)","Unfortunate Spot (Dead End)","Unfortunate Spot (Box)","Unfortunate Spot (Arena)","Unfortunate Spot (Backrooms)","Unfortunate Spot (Sex Dungeon)"}, function(currentOption)
+  _G.selectedstat = currentOption;
+end);
+TSection:NewToggle("Teleport Player", "", function(state)
+  if state then
+    _G.bring = true;
+  else
+    _G.bring = false;
+  end
+end);
+TSection:NewButton("Teleport", "", function()
+	getNearPlayer(99);
+  if (_G.selectedstat == "Bar") then
+    if (_G.bring == true) then
+      getNearPlayer(99);
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1313, 197, 149);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1313, 197, 149);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Building Park") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1751, 442, 1266);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1751, 442, 1266);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "City Square") then
+	  if (_G.bring == true) then
+	    for i, v in pairs(plrlist) do
+	      game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+	      game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-385, 86, 256);
+	      wait(0.2);
+	      game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+	    end
+	  else
+	    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-385, 86, 256);
+	    breakvelocity();
+	  end
+  elseif (_G.selectedstat == "Evil Lair") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-905, 94, -1086);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-905, 94, -1086);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Feild") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(2355, 81, 4);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2355, 81, 4);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Hero HQ") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(259, 169, 2748);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(259, 169, 2748);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Hero Lair") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(2351, 39, -1855);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2351, 39, -1855);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Motel") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1750, 94, -1349);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1750, 94, -1349);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Mountain") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-2206, 817, -2425);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2206, 817, -2425);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Mountain-2") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-2429, 762, -2363);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2429, 762, -2363);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Park") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(1399, 94, 1154);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1399, 94, 1154);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Plains") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-3683, 97, -144);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3683, 97, -144);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Prison") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-779, 269, -2594);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-779, 269, -2594);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Contruction Building") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(650, 779, 284);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(650, 779, 284);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Corner-1") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(2773, 96, -4996);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2773, 96, -4996);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Corner-2") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-3757, 97, -3801);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3757, 97, -3801);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Corner-3") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-3650, 97, 2764);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3650, 97, 2764);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Corner-4") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(2810, 102, 2821);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2810, 102, 2821);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Ignite Tower") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-70, 616, -247);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-70, 616, -247);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Military Base") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(259, 99, -4639);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(259, 99, -4639);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Mountain Hole") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-2732, 256, -1776);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2732, 256, -1776);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Police Department") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-62, 94, -480);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-62, 94, -480);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Cave") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(269, -59, 2729);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(269, -59, 2729);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Secret Area)") then
+	  if (_G.bring == true) then
+	    for i, v in pairs(plrlist) do
+	      game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+	      game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1100, 61, -1169);
+	      wait(0.2);
+	      game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+	    end
+	  else
+	    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1100, 61, -1169);
+	    breakvelocity();
+	  end
+  elseif (_G.selectedstat == "Unfortunate Spot (In Building)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-494, 96, -98);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-494, 96, -98);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Trap)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-790, 135, -2769);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-790, 135, -2769);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Space)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(0, 9999999, 0);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 9999999, 0);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Under Map)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(0, 0, 0);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 0, 0);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Dead End)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(1453, 98, -2506);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1453, 98, -2506);
+      breakvelocity();
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Box)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1695, 94, -1309);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1695, 94, -1309);
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Arena)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1728, 94, -1188);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1728, 94, -1188);
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Backrooms)") then
+    if (_G.bring == true) then
+      for i, v in pairs(plrlist) do
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+        game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1519, 95, -1072);
+        wait(0.2);
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+      end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1519, 95, -1072);
+    end
+  elseif (_G.selectedstat == "Unfortunate Spot (Sex Dungeon)") then
+    if (_G.bring == true) then
+		  for i, v in pairs(plrlist) do
+		    game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition:Destroy();
+		    game:GetService("Workspace")[v.Name].HumanoidRootPart.CFrame = CFrame.new(-1585, 95, -1159);
+		    wait(0.2);
+		    game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+		  end
+    else
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1585, 95, -1159);
+    end
+  end
+  plrlist = {};
+  
+end);
+QSection:NewToggle("Rapid Punch", "", function(state)
+	if state then
+		getgenv().rapid = true;
+		local UserInputService = game:GetService("UserInputService");
+		local function onInputEnded(inputObject, gameProcessedEvent)
+			if gameProcessedEvent then
+				return;
+			end
+			if (rapid == true) then
+				if (inputObject.UserInputType == Enum.UserInputType.MouseButton1) then
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+				end
+			end
+		end
+		UserInputService.InputEnded:Connect(onInputEnded);
+	else
+		spawn(function()
+			getgenv().rapid = false;
+		end);
+	end
+end);
+QSection:NewToggle("Rapid Heavy Punch", "", function(state)
+	if state then
+		getgenv().Hrapid = true;
+		local UserInputService = game:GetService("UserInputService");
+		local function onInputEnded(inputObject, gameProcessedEvent)
+			if gameProcessedEvent then
+				return;
+			end
+			if (Hrapid == true) then
+				if (inputObject.UserInputType == Enum.UserInputType.MouseButton1) then
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+				end
+			end
+		end
+		UserInputService.InputEnded:Connect(onInputEnded);
+	else
+		spawn(function()
+			getgenv().Hrapid = false;
+		end);
+	end
+end);
+QSection:NewToggle("Super Rapid Punch", "", function(state)
+	if state then
+		getgenv().superrapid = true;
+		local UserInputService = game:GetService("UserInputService");
+		local function onInputEnded(inputObject, gameProcessedEvent)
+			if gameProcessedEvent then
+				return;
+			end
+			if (superrapid == true) then
+				if (inputObject.UserInputType == Enum.UserInputType.MouseButton1) then
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+				end
+			end
+		end
+		UserInputService.InputEnded:Connect(onInputEnded);
+	else
+		spawn(function()
+			getgenv().superrapid = false;
+		end);
+	end
+end);
+QSection:NewToggle("Super Heavy Rapid Punch", "", function(state)
+	if state then
+		getgenv().superhrapid = true;
+		local UserInputService = game:GetService("UserInputService");
+		local function onInputEnded(inputObject, gameProcessedEvent)
+			if gameProcessedEvent then
+				return;
+			end
+			if (superhrapid == true) then
+				if (inputObject.UserInputType == Enum.UserInputType.MouseButton1) then
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+				end
+			end
+		end
+		UserInputService.InputEnded:Connect(onInputEnded);
+	else
+		spawn(function()
+			getgenv().superhrapid = false;
+		end);
+	end
+end);
+getRoot = function(char)
+	local rootPart = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso");
+	return rootPart;
+end;
+getRoot = function(char)
+	local rootPart = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso");
+	return rootPart;
+end;
+QSection:NewButton("Rapid Punch (Mobile)", "", function()
+  getgenv().keytoclick = "RapidPunch"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+  spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+wait(0.2)
+end);
+QSection:NewButton("Heavy Rapid Punch (Mobile)", "", function()
+  getgenv().keytoclick = "Heavy"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+  spawn(function()
+  game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.1, 1);
+  end);
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+wait(0.2)
+end);  
+QSection:NewButton("Heavy Rapid Punch (Mobile)", "", function()
+  getgenv().keytoclick = "Super"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+  spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					end);
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+wait(0.2)
+end);  
+QSection:NewButton("Super Heavy Rapid Punch (Mobile)", "", function()
+    getgenv().keytoclick = "Super Heavy"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+    spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+wait(0.2)
+end);
+QSection:NewToggle("Spawn Point", "", function(state)
+	if state then
+	  getgenv().Deathcheck = true;
+	  local varX = player.Character.UpperTorso.Position['X'];
+	  local varY = player.Character.UpperTorso.Position['Y'];
+	  local varZ = player.Character.UpperTorso.Position['Z'];
+	  spawn(function()
+	    while Deathcheck do
+	      local player = game.Players.LocalPlayer.Character.Humanoid.Health;
+	      if (player == 0) then
+	        wait();
+	        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+	      end
+	      wait();
+	    end
+	  end);
+	else
+	  spawn(function()
+	    getgenv().Deathcheck = false;
+	  end);
+	end
+end);
+
+QSection:NewButton("Destroy Safezone & Parts", "", function()
+  game:GetService("Workspace").City.Buildings:Destroy();
+  game:GetService("Workspace").City.Interactive.Bank.Model:Destroy();
+  game:GetService("Workspace").City.Interactive["Police Station"]:GetChildren()[28]:Destroy();
+  game:GetService("Workspace").City.Interactive.Grove.WareHouse:Destroy();
+  game:GetService("Workspace").City.Interactive["Main Plaza"]:GetChildren()[38]:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+  game:GetService("Workspace").SafeZones.Barrier:Destroy();
+end);
+
+QSection:NewToggle("Hide Title Gui", "", function(state)
+  if state then
+    getgenv().hide = true;
+    while hide do
+      wait();
+      if game.Players.LocalPlayer.Character then
+        local rP = game.Players.LocalPlayer.Character.HumanoidRootPart;
+        if (rP and rP:FindFirstChild("titleGui")) then
+          rP.titleGui:Destroy();
+        end
+      end
+    end
+  else
+    spawn(function()
+      getgenv().hide = false;
+    end);
+  end
+end);
+
+QSection:NewToggle("Auto-Grab", "", function(state)
+	if state then
+		getgenv().teleaura = true;
+		while teleaura do
+			wait(0.1);
+			spawn(function()
+				local LookVector = game.Workspace.Camera.CFrame.LookVector;
+				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, true);
+				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, false);
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().teleaura = false;
+		end);
+	end
+end);
+QSection:NewToggle("Tele-Fling", "", function(state)
+	if state then
+		getgenv().telesauras = true;
+		while telesauras do
+			wait(0.1);
+			spawn(function()
+				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(999999, 999999, 999999), true);
+				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(999999, 999999, 999999), false);
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().telesauras = false;
+		end);
+	end
+end);
+QSection:NewToggle("Anti-Tele", "", function(state)
+  if state then
+    getgenv().localtele = true;
+    spawn(function()
+		  while localtele do
+		    game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[_G.LOCALPLAYER].Character);
+		    wait();
+		  end
+    end);
+  else
+    spawn(function()
+      getgenv().localtele = false;
+    end);
+  end
+end);
+
+QSection:NewToggle("Auto-Metal", " ", function(state)
+  if state then
+    getgenv().metal = true;
+    while metal do
+      wait();
+      spawn(function()
+        game:GetService("ReplicatedStorage").Events.Transform:FireServer("metalSkin", true);
+      end);
+    end
+  else
+    spawn(function()
+      getgenv().metal = false;
+      wait();
+      game:GetService("ReplicatedStorage").Events.Transform:FireServer("metalSkin", false);
+    end);
+  end
+end);
+QSection:NewToggle("Safe Teleport", "", function(state)
+  if state then
+    local player1 = game.Players.LocalPlayer.Character.Humanoid.Health;
+    local math = player18 / 30;
+    getgenv().st = true;
+    while st do
+      task.wait();
+      spawn(function()
+        local player = game.Players.LocalPlayer.Character.Humanoid.Health;
+        if (player < math) then
+          game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[_G.LOCALPLAYER].Character);
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1368.27539, 195.429108, 195.75, 0, 0, -1, 0, 1, 0, 1, 0, 0);
+        end
+      end);
+    end
+  else
+    spawn(function()
+      getgenv().st = false;
+    end);
+  end
+end);
+QSection:NewToggle("Anti-Knock", "", function(state)
+  if state then
+    getgenv().AntiKnockback = true;
+    while AntiKnockback do
+      task.wait();
+      spawn(function()
+        local PrimaryPart = player.Character.PrimaryPart;
+        if ((PrimaryPart.AssemblyLinearVelocity.Magnitude > 250) or (PrimaryPart.AssemblyAngularVelocity.Magnitude > 250)) then
+          PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0);
+          PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0);
+          PrimaryPart.CFrame = LastPosition;
+        elseif ((PrimaryPart.AssemblyLinearVelocity.Magnitude < 50) or (PrimaryPart.AssemblyAngularVelocity.Magnitude > 50)) then
+          LastPosition = PrimaryPart.CFrame;
+        end
+      end);
+    end
+  else
+    spawn(function()
+		  getgenv().AntiKnockback = false;
+    end);
+  end
+end);
+QSection:NewToggle("Anchor RootPart", "", function(state)
+  if state then
+    player.Character.HumanoidRootPart.Anchored = true;
+  else
+    player.Character.HumanoidRootPart.Anchored = false;
+  end
+end);
+VSection:NewButton("Mega Crash", "", function(state)
+  local x = 0;
+  local y = 0
+  local z = 0
+  spawn(function()
+    repeat
+      x += 1
+      game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+    until x == 50000
+  end)
+  spawn(function()
+    repeat
+      y += 1
+      game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+    until y == 50000
+  end)
+  spawn(function()
+    repeat
+      z += 1
+      game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+    until z == 50000
+  end)
+
+  
+  game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(false);
+  wait();
+  game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(false);
+end);
+VSection:NewButton("Big Crash", "", function(state)
+  local x = 0;
+  local y = 0
+  local z = 0
+  spawn(function()
+    repeat
+      x += 1
+      game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+    until x == 5000
+  end)
+  spawn(function()
+    repeat
+      y += 1
+      game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+    until y == 5000
+  end)
+  spawn(function()
+    repeat
+      z += 1
+      game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+    until z == 5000
+  end)
+
+  
+  game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(false);
+  wait();
+  game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(false);
+end);
+
+VSection:NewButton("Small Crash", "", function(state)
+  local x = 0;
+  repeat
+    x += 1
+    game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer("true");
+  until x == 5000
+  game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(false);
+  wait();
+  game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(false);
+end);
+
+
+VSection:NewButton("Ground Crack Lag", "", function(state)
+  for i = 1, 1000 do
+    game:GetService("ReplicatedStorage").Events.GroundCrack:FireServer();
+  end
+end);
+VSection:NewButton("Mini Ground Crack Lag", "", function(state)
+  for i = 1, 500 do
+    game:GetService("ReplicatedStorage").Events.GroundCrack:FireServer();
+  end
+end);
+VSection:NewButton("Mini Mini Ground Crack Lag", "", function(state)
+  for i = 1, 200 do
+    game:GetService("ReplicatedStorage").Events.GroundCrack:FireServer();
+  end
+end);
+
+VSection:NewButton("Anti-Crash", "", function()
+  game.ClientStorage.Effects.Shield:Destroy()
+end);
+
+GetList();
+local slcplr = MSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
+	spawn(function()
+	  _G.tplayer = currentOption;
+	end);
+end);
+MSection:NewButton("Refresh Dropdown", "", function()
+  spawn(function()
+    GetList();
+    slcplr:Refresh(dropdown);
+  end);
+end);
+MSection:NewButton("Teleport To Player", "", function()
+  spawn(function()
+	  local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    p1.CFrame = game.Players[_G.tplayer].Character.HumanoidRootPart.CFrame;
+    breakvelocity();
+  end);
+end);
+MSection:NewToggle("Spectate Player", "", function(state)
+  spawn(function()
+    if state then
+      spawn(function()
+        getgenv().watch = true;
+        while watch do
+          spawn(function()
+            viewing = game.Players[_G.tplayer];
+            workspace.CurrentCamera.CameraSubject = viewing.Character;
+          end);
+          wait();
+        end
+      end);
+    else
+      spawn(function()
+        getgenv().watch = false;
+        viewing = game.Players.LocalPlayer;
+        workspace.CurrentCamera.CameraSubject = viewing.Character;
+        wait();
+        getgenv().watch = false;
+        viewing = game.Players.LocalPlayer;
+        workspace.CurrentCamera.CameraSubject = viewing.Character;
+      end);
+    end
+  end);
+end);
+MSection:NewToggle("Kill Player", "", function(state)
+  if state then
+    getgenv().killplr = true;
+    local varX = player.Character.HumanoidRootPart.Position['X'];
+    local varY = player.Character.HumanoidRootPart.Position['Y'];
+    local varZ = player.Character.HumanoidRootPart.Position['Z'];
+    wait();
+    local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    local pos = p1.CFrame;
+    getgenv().breakv = true;
+    spawn(function()
+      while breakv do
+        breakvelocity();
+        game:GetService("ReplicatedStorage").Events.Transform:FireServer("metalSkin", true);
+        wait();
+      end
+    end);
+    spawn(function()
+      while killplr do
+        task.wait();
+        task.wait();
+        task.wait();
+        task.wait();
+        task.wait();
+        task.wait();
+        spawn(function()
+          pcall(function()
+            for i, v in pairs(game.Workspace:GetChildren()) do
+              if ((v.Name == _G.tplayer) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1);
+              end
+            end
+          end);
+        end);
+        spawn(function()
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+          game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+        end);
+        spawn(function()
+          local LookVector = game.Workspace.Camera.CFrame.LookVector;
+          game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, true);
+          game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, false);
+        end);
+        spawn(function()
+          if (killplr == false) then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      getgenv().breakv = false;
+      wait();
+      getgenv().killplr = false;
+      wait();
+      getgenv().killplr = true;
+      breakvelocity();
+    end);
+  end
+end);
+MSection:NewToggle("LoopTP Player", "", function(state)
+  if state then
+    getgenv().loopgoto = true;
+    local varX = player.Character.HumanoidRootPart.Position['X'];
+    local varY = player.Character.HumanoidRootPart.Position['Y'];
+    local varZ = player.Character.HumanoidRootPart.Position['Z'];
+    wait();
+    local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    local pos = p1.CFrame;
+    getgenv().breakv = true;
+    spawn(function()
+		  while breakv do
+		    wait();
+		    breakvelocity();
+		  end
+    end);
+    while loopgoto do
+      task.wait();
+      spawn(function()
+			  pcall(function()
+			    for i, v in pairs(game.Workspace:GetChildren()) do
+			      if ((v.Name == _G.tplayer) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+			        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3);
+			      end
+			    end
+			  end);
+      end);
+      spawn(function()
+        if (loopgoto == false) then
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+        end
+      end);
+    end
+  else
+    spawn(function()
+      getgenv().breakv = false;
+      wait();
+      getgenv().loopgoto = false;
+      wait();
+      getgenv().loopgoto = true;
+      breakvelocity();
+    end);
+  end
+end);
+MSection:NewToggle("Fling Player", "", function(state)
+  if state then
+    getgenv().fling = true;
+    local varX = player.Character.HumanoidRootPart.Position['X'];
+    local varY = player.Character.HumanoidRootPart.Position['Y'];
+    local varZ = player.Character.HumanoidRootPart.Position['Z'];
+    wait();
+    local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    local pos = p1.CFrame;
+    getgenv().Flingvel = true;
+    for _, child in pairs(player.Character:GetDescendants()) do
+      if child:IsA("BasePart") then
+        child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5);
+      end
+    end
+    local bambam = Instance.new("BodyAngularVelocity");
+    bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    bambam.AngularVelocity = Vector3.new(0, 1000000, 0);
+    bambam.MaxTorque = Vector3.new(0, math.huge, 0);
+    local Char = player.Character:GetChildren();
+    for i, v in next, Char do
+      if v:IsA("BasePart") then
+        v.CanCollide = false;
+        v.Massless = true;
+        v.Velocity = Vector3.new(0, 0, 0);
+      end
+    end
+    while fling do
+      task.wait();
+      spawn(function()
+        pcall(function()
+          for i, v in pairs(game.Workspace:GetChildren()) do
+            if ((v.Name == _G.tplayer) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+              game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 0);
+            end
+          end
+        end);
+      end);
+      spawn(function()
+        local PrimaryPart = player.Character.PrimaryPart;
+        if ((PrimaryPart.AssemblyLinearVelocity.Magnitude > 250) or (PrimaryPart.AssemblyAngularVelocity.Magnitude > 250)) then
+          PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0);
+          PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0);
+          PrimaryPart.CFrame = LastPosition;
+        elseif ((PrimaryPart.AssemblyLinearVelocity.Magnitude < 50) or (PrimaryPart.AssemblyAngularVelocity.Magnitude > 50)) then
+				  LastPosition = PrimaryPart.CFrame;
+        end
+      end);
+      spawn(function()
+			  if (fling == false) then
+			    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+			  end
+      end);
+    end
+  else
+    spawn(function()
+      getgenv().fling = false;
+      wait();
+      getgenv().fling = true;
+    end);
+    local playerChar = player.Character;
+    if (not playerChar or not getRoot(playerChar)) then
+      return;
+    end
+    for i, v in pairs(getRoot(playerChar):GetChildren()) do
+      if (v.ClassName == "BodyAngularVelocity") then
+        v:Destroy();
+      end
+    end
+    for _, child in pairs(playerChar:GetDescendants()) do
+      if ((child.ClassName == "Part") or (child.ClassName == "MeshPart")) then
+        child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5);
+      end
+    end
+    breakvelocity();
+  end
+end);
+MSection:NewToggle("Gives Player Anti-Tele", "Gives Assigned Player Anti Tele", function(state)
+  spawn(function()
+    if state then
+      getgenv().at = true
+      while at do
+        game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(0,0,0),false,game:GetService("Players")[_G.tplayer].Character)
+        wait()
+      end
+      
+    else
+      getgenv().at = false
+    end
+  end);
+end);
+MSection:NewToggle("Laser", "", function(state)
+  spawn(function()
+    if state then
+      getgenv().LaserL = true;
+      wait();
+      coroutine.resume(coroutine.create(function()
+        local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+        local part = event:InvokeServer(true);
+        getgenv().LaserL = true;
+        while LaserL and part and _G.tplayer do
+          wait();
+          local target = game.Players:FindFirstChild(_G.tplayer);
+          if (target and target.Character and target.Character:FindFirstChild("HumanoidRootPart")) then
+            part.Position = target.Character.HumanoidRootPart.Position;
+          end
+        end
+        event:InvokeServer(false);end));
+    else
+      spawn(function()
+        getgenv().LaserL = false;
+      end);
+    end
+  end);
+end);
+
+MSection:NewToggle("Disable All Telekinesis", "", function(state)
+  spawn(function()
+    if state then
+      Players = game:GetService("Players");
+      for i, player in pairs(Players:GetPlayers()) do
+        getgenv().LToggle = true;
+        spawn(function()
+          while LToggle do
+            wait();
+            game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[player.Name].Character);
+          end
+        end);
+      end
+    else
+      spawn(function()
+			  getgenv().LToggle = false;
+      end);
+    end
+  end);
+end);
+
+KSection:NewKeybind("Carry Player", "", Enum.KeyCode['H'], function()
+  if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              Xt = player.Character.HumanoidRootPart.Position['X'];
+              Yt = player.Character.HumanoidRootPart.Position['Y'];
+              Zt = player.Character.HumanoidRootPart.Position['Z'];
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(Xt, Yt + 8, Zt + 5);
+            end
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
+end);
+KSection:NewKeybind("Tele-Lock", "", Enum.KeyCode['T'], function()
+  spawn(function()
+    local LookVector = game.Workspace.Camera.CFrame.LookVector;
+    game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, true);
+    game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, false);
+  end);
+end);
+
+KSection:NewKeybind("Tele-kill", "", Enum.KeyCode['G'], function()
+  spawn(function()
+	  getNearPlayer(99);
+    for i, v in pairs(plrlist) do
+      if (v == player) then
+			  
+			else
+        spawn(function()
+				  v.Head.Neck:Destroy();
+          plrlist = {};wait();
+          spawn(function()
+            game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[v.Name].Character);
+          end);
+        end);
+      end
+    end
+  end);
+end);
+KSection:NewKeybind("Release-Tele", "", Enum.KeyCode['C'], function()
+  plrlist = {};
+  Players = game:GetService("Players");
+  for i, player in pairs(Players:GetPlayers()) do
+    spawn(function()
+		  game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[player.Name].Character);
+    end);
+  end
+end);
+
+KSection:NewKeybind("TP-Motel", "", Enum.KeyCode.Z, function()
+  if (_G.bring == true) then
+    game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.telekinesisPosition:Destroy()
+    game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.CFrame = CFrame.new(-1745, 95, -1530);
+    wait(0.2)
+    game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[_G.teleportplayer].Character);
+  else
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1745, 95, -1530);
+  end
+  breakvelocity();
+end);
+KSection:NewKeybind("TP-Middle", "", Enum.KeyCode.V, function()
+  if (_G.bring == true) then
+    game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.telekinesisPosition:Destroy()
+    game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.CFrame = CFrame.new(-376, 94, 91);
+    wait(0.2)
+    game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(1, 1, 1), false, game.Players[_G.teleportplayer].Character);
+  else
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-376, 94, 91);
+  end
+  breakvelocity();
+end);
+KSection:NewKeybind("Toggle UI", "", Enum.KeyCode.RightShift, function()
+  Library:ToggleUI();
+end);
+farmSection:NewToggle("Orb Farm", "", function(state)
+	if state then
+		getgenv().OrbFarm = true;
+		repeat
+			local Playerhead = game.Players.LocalPlayer.Character.Head;
+			spawn(function()
+				for i, v in pairs(game:GetService("Workspace").ExperienceOrbs:GetDescendants()) do
+					if ((v.Name == "TouchInterest") and v.Parent) then
+						firetouchinterest(Playerhead, v.Parent, 0);
+					end
+				end
+			end);
+			wait();
+		until OrbFarm == false 
+	else
+		spawn(function()
+			getgenv().OrbFarm = false;
+		end);
+	end
+end);
+farmSection:NewToggle("Laser Civilian Farm", "", function(state)
+	if state then
+		getgenv().LaserC = true;
+		coroutine.resume(coroutine.create(function()
+			local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+			local part = event:InvokeServer(true);
+			getgenv().LaserC = true;
+			while LaserC and part do
+				wait();
+				for i, v in pairs(game.Workspace:GetChildren()) do
+					if ((v.ClassName == "Model") and (v.Name == "Civilian") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+						part.Position = v.HumanoidRootPart.Position;
+					end
+				end
+			end
+			event:InvokeServer(false);
+		end));
+	else
+		spawn(function()
+			getgenv().LaserC = false;
+		end);
+		breakvelocity();
+	end
+end);
+farmSection:NewToggle("Laser Police Farm", "", function(state)
+	if state then
+		getgenv().LaserV = true;
+		coroutine.resume(coroutine.create(function()
+			local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+			local part = event:InvokeServer(true);
+			getgenv().LaserV = true;
+			while LaserV and part do
+				for i, v in pairs(game.Workspace:GetChildren()) do
+					if ((v.ClassName == "Model") and (v.Name == "Police") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+						part.Position = v.HumanoidRootPart.Position;
+					end
+				end
+				wait();
+			end
+			event:InvokeServer(false);
+		end));
+	else
+		spawn(function()
+			getgenv().LaserV = false;
+		end);
+		breakvelocity();
+	end
+end);
+farmSection:NewToggle("Laser Thug Farm", "", function(state)
+	if state then
+		getgenv().LaserH = true;
+		coroutine.resume(coroutine.create(function()
+			local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+			local part = event:InvokeServer(true);
+			getgenv().LaserH = true;
+			while LaserH and part do
+				wait();
+				for i, v in pairs(game.Workspace:GetChildren()) do
+					if ((v.ClassName == "Model") and (v.Name == "Thug") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+						part.Position = v.HumanoidRootPart.Position;
+					end
+				end
+			end
+			event:InvokeServer(false);
+		end));
+	else
+		spawn(function()
+			getgenv().LaserH = false;
+		end);
+		breakvelocity();
+	end
+end);
+farmSection:NewToggle("Laser Civilian Farm (Sky)", "", function(state)
+        if state then       
+            orbCX = player.Character.HumanoidRootPart.Position.X orbCY = player.Character.HumanoidRootPart.Position.Y orbCZ = player.Character.HumanoidRootPart.Position.Z
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbCX,2500,orbCZ)
+            getgenv().LaserC = true
+            wait(0.2)
+            player.Character.HumanoidRootPart.Anchored = true
+            coroutine.resume(coroutine.create(
+              function()
+                local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+                local part = event:InvokeServer(true);
+                getgenv().LaserC = true
+                while LaserC and part do     
+                  wait()  
+                    for i, v in pairs(game.Workspace:GetChildren()) do
+                        if v.ClassName == "Model" and v.Name == "Civilian" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                            part.Position = v.HumanoidRootPart.Position;
+                        end                
+                    end                            
+                end
+                event:InvokeServer(false);
+              end
+            ));      
+        else
+            player.Character.HumanoidRootPart.Anchored = false
+            spawn(function() getgenv().LaserC = false end) 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbCX, orbCY, orbCZ)
+            breakvelocity()
+        end
+    end);
+	farmSection:NewToggle("Laser Police Farm(Sky)", "", function(state)
+        if state then        
+            orbVX = player.Character.HumanoidRootPart.Position.X orbVY = player.Character.HumanoidRootPart.Position.Y orbVZ = player.Character.HumanoidRootPart.Position.Z
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbVX,2500,orbVZ)
+            getgenv().LaserV = true
+            wait(0.2)
+            player.Character.HumanoidRootPart.Anchored = true
+            coroutine.resume(coroutine.create(
+              function()
+                local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+                local part = event:InvokeServer(true);
+                getgenv().LaserV = true
+                while LaserV and part do     
+                        for i, v in pairs(game.Workspace:GetChildren()) do
+                            if v.ClassName == "Model" and v.Name == "Police" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                part.Position = v.HumanoidRootPart.Position;
+                            end                
+                        end
+                  wait()            
+                end
+                event:InvokeServer(false);
+              end
+            ));      
+        else
+            player.Character.HumanoidRootPart.Anchored = false
+            spawn(function() getgenv().LaserV = false end) 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbVX, orbVY, orbVZ)
+            breakvelocity()
+        end
+    end);
+	farmSection:NewToggle("Laser Thug Farm(Sky)", "", function(state)
+        if state then       
+            orbHX = player.Character.HumanoidRootPart.Position.X orbHY = player.Character.HumanoidRootPart.Position.Y orbHZ = player.Character.HumanoidRootPart.Position.Z
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbHX,2500,orbHZ)
+            getgenv().LaserH = true
+            wait(0.2)
+            player.Character.HumanoidRootPart.Anchored = true
+            coroutine.resume(coroutine.create(
+              function()
+                local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
+                local part = event:InvokeServer(true);
+                getgenv().LaserH = true
+                while LaserH and part do     
+                  wait()  
+                    for i, v in pairs(game.Workspace:GetChildren()) do
+                        if v.ClassName == "Model" and v.Name == "Thug" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                            part.Position = v.HumanoidRootPart.Position;
+                        end                
+                    end                            
+                end
+                event:InvokeServer(false);
+              end
+            ));      
+        else
+            player.Character.HumanoidRootPart.Anchored = false
+            spawn(function() getgenv().LaserH = false  end) 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbHX, orbHY, orbHZ)
+            breakvelocity()
+        end
+    end);
+farmSection:NewToggle("Civilian Farm", "", function(state)
+	if state then
+		CivilianX = player.Character.HumanoidRootPart.Position['X'];
+		CivilianY = player.Character.HumanoidRootPart.Position['Y'];
+		CivilianZ = player.Character.HumanoidRootPart.Position['Z'];
+		getgenv().Civilian = true;
+		while Civilian do
+			wait(0.2);
+			pcall(function()
+				for i, v in pairs(game.Workspace:GetChildren()) do
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					if ((v.ClassName == "Model") and (v.Name == "Civilian") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2);
+					end
+				end
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().Civilian = false;
+			wait(0.2);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(CivilianX, CivilianY, CivilianZ);
+		end);
+	end
+end);
+farmSection:NewToggle("Police Farm", "", function(state)
+	if state then
+		PoliceX = player.Character.HumanoidRootPart.Position['X'];
+		PoliceY = player.Character.HumanoidRootPart.Position['Y'];
+		PoliceZ = player.Character.HumanoidRootPart.Position['Z'];
+		getgenv().Police = true;
+		while Police do
+			wait(0.2);
+			pcall(function()
+				for i, v in pairs(game.Workspace:GetChildren()) do
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					if ((v.ClassName == "Model") and (v.Name == "Police") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2);
+					end
+				end
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().Police = false;
+			wait(0.2);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(PoliceX, PoliceY, PoliceZ);
+		end);
+	end
+end);
+farmSection:NewToggle("Thug Farm", "", function(state)
+	if state then
+		thugX = player.Character.HumanoidRootPart.Position['X'];
+		thugY = player.Character.HumanoidRootPart.Position['Y'];
+		thugZ = player.Character.HumanoidRootPart.Position['Z'];
+		getgenv().Thug = true;
+		while Thug do
+			wait(0.2);
+			pcall(function()
+				for i, v in pairs(game.Workspace:GetChildren()) do
+					game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					if ((v.ClassName == "Model") and (v.Name == "Thug") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+						game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2);
+					end
+				end
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().Thug = false;
+			wait(0.2);
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(thugX, thugY, thugZ);
+		end);
+	end
+end);
+
+
+VSection:NewButton("BoxEsp", " ", function()
+    -- Settings
+local Settings = {
+    Box_Color = Color3.fromRGB(255, 0, 0),
+    Box_Thickness = 2,
+    Team_Check = false,
+    Team_Color = false,
+    Autothickness = true
+}
+
+--Locals
+local Space = game:GetService("Workspace")
+local Player = game:GetService("Players").LocalPlayer
+local Camera = Space.CurrentCamera
+
+-- Locals
+local function NewLine(color, thickness)
+    local line = Drawing.new("Line")
+    line.Visible = false
+    line.From = Vector2.new(0, 0)
+    line.To = Vector2.new(0, 0)
+    line.Color = color
+    line.Thickness = thickness
+    line.Transparency = 1
+    return line
+end
+
+local function Vis(lib, state)
+    for i, v in pairs(lib) do
+        v.Visible = state
+    end
+end
+
+local function Colorize(lib, color)
+    for i, v in pairs(lib) do
+        v.Color = color
+    end
+end
+
+local Black = Color3.fromRGB(0, 0, 0)
+
+local function Rainbow(lib, delay)
+    for hue = 0, 1, 1/30 do
+        local color = Color3.fromHSV(hue, 0.6, 1)
+        Colorize(lib, color)
+        wait(delay)
+    end
+    Rainbow(lib)
+end
+--Main Draw Function
+local function Main(plr)
+    repeat wait() until plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil
+    local R15
+    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+        R15 = true
+    else 
+        R15 = false
+    end
+    local Library = {
+        TL1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+        TL2 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+
+        TR1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+        TR2 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+
+        BL1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+        BL2 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+
+        BR1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
+        BR2 = NewLine(Settings.Box_Color, Settings.Box_Thickness)
+    }
+    coroutine.wrap(Rainbow)(Library, 0.15)
+    local oripart = Instance.new("Part")
+    oripart.Parent = Space
+    oripart.Transparency = 1
+    oripart.CanCollide = false
+    oripart.Size = Vector3.new(1, 1, 1)
+    oripart.Position = Vector3.new(0, 0, 0)
+    --Updater Loop
+    local function Updater()
+        local c 
+        c = game:GetService("RunService").RenderStepped:Connect(function()
+            if plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character.Humanoid.Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
+                local Hum = plr.Character
+                local HumPos, vis = Camera:WorldToViewportPoint(Hum.HumanoidRootPart.Position)
+                if vis then
+                    oripart.Size = Vector3.new(Hum.HumanoidRootPart.Size.X, Hum.HumanoidRootPart.Size.Y*1.5, Hum.HumanoidRootPart.Size.Z)
+                    oripart.CFrame = CFrame.new(Hum.HumanoidRootPart.CFrame.Position, Camera.CFrame.Position)
+                    local SizeX = oripart.Size.X
+                    local SizeY = oripart.Size.Y
+                    local TL = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(SizeX, SizeY, 0)).p)
+                    local TR = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(-SizeX, SizeY, 0)).p)
+                    local BL = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(SizeX, -SizeY, 0)).p)
+                    local BR = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(-SizeX, -SizeY, 0)).p)
+
+                    if Settings.Team_Check then
+                        if plr.TeamColor == Player.TeamColor then
+                            Colorize(Library, Color3.fromRGB(0, 255, 0))
+                        else 
+                            Colorize(Library, Color3.fromRGB(255, 0, 0))
+                        end
+                    end
+
+                    if Settings.Team_Color then
+                        Colorize(Library, plr.TeamColor.Color)
+                    end
+
+                    local ratio = (Camera.CFrame.p - Hum.HumanoidRootPart.Position).magnitude
+                    local offset = math.clamp(1/ratio*750, 2, 300)
+
+                    Library.TL1.From = Vector2.new(TL.X, TL.Y)
+                    Library.TL1.To = Vector2.new(TL.X + offset, TL.Y)
+                    Library.TL2.From = Vector2.new(TL.X, TL.Y)
+                    Library.TL2.To = Vector2.new(TL.X, TL.Y + offset)
+
+                    Library.TR1.From = Vector2.new(TR.X, TR.Y)
+                    Library.TR1.To = Vector2.new(TR.X - offset, TR.Y)
+                    Library.TR2.From = Vector2.new(TR.X, TR.Y)
+                    Library.TR2.To = Vector2.new(TR.X, TR.Y + offset)
+
+                    Library.BL1.From = Vector2.new(BL.X, BL.Y)
+                    Library.BL1.To = Vector2.new(BL.X + offset, BL.Y)
+                    Library.BL2.From = Vector2.new(BL.X, BL.Y)
+                    Library.BL2.To = Vector2.new(BL.X, BL.Y - offset)
+
+                    Library.BR1.From = Vector2.new(BR.X, BR.Y)
+                    Library.BR1.To = Vector2.new(BR.X - offset, BR.Y)
+                    Library.BR2.From = Vector2.new(BR.X, BR.Y)
+                    Library.BR2.To = Vector2.new(BR.X, BR.Y - offset)
+
+                    Vis(Library, true)
+
+                    if Settings.Autothickness then
+                        local distance = (Player.Character.HumanoidRootPart.Position - oripart.Position).magnitude
+                        local value = math.clamp(1/distance*100, 1, 4) --0.1 is min thickness, 6 is max
+                        for u, x in pairs(Library) do
+                            x.Thickness = value
+                        end
+                    else 
+                        for u, x in pairs(Library) do
+                            x.Thickness = Settings.Box_Thickness
+                        end
+                    end
+                else 
+                    Vis(Library, false)
+                end
+            else 
+                Vis(Library, false)
+                if game:GetService("Players"):FindFirstChild(plr.Name) == nil then
+                    for i, v in pairs(Library) do
+                        v:Remove()
+                        oripart:Destroy()
+                    end
+                    c:Disconnect()
+                end
+            end
+        end)
+    end
+    coroutine.wrap(Updater)()
+end
+
+-- Draw Boxes
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= Player.Name then
+      coroutine.wrap(Main)(v)
+    end
+end
+
+game:GetService("Players").PlayerAdded:Connect(function(newplr)
+    coroutine.wrap(Main)(newplr)
+end)
+end)
+
+VSection:NewButton("NameEsp", " ", function()
+    local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
+
+local function esp(p,cr)
+	local h = cr:WaitForChild("Humanoid")
+	local hrp = cr:WaitForChild("Head")
+
+	local text = Drawing.new("Text")
+	text.Visible = false
+	text.Center = true
+	text.Outline = false 
+	text.Font = 3
+	text.Size = 16.16
+	text.Color = Color3.new(170,170,170)
+
+	local conection
+	local conection2
+	local conection3
+
+	local function dc()
+		text.Visible = false
+		text:Remove()
+		if conection then
+			conection:Disconnect()
+			conection = nil 
+		end
+		if conection2 then
+			conection2:Disconnect()
+			conection2 = nil 
+		end
+		if conection3 then
+			conection3:Disconnect()
+			conection3 = nil 
+		end
+	end
+
+	conection2 = cr.AncestryChanged:Connect(function(_,parent)
+		if not parent then
+			dc()
+		end
+	end)
+
+	conection3 = h.HealthChanged:Connect(function(v)
+		if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+			dc()
+		end
+	end)
+
+	conection = rs.RenderStepped:Connect(function()
+		local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
+		if hrp_onscreen then
+			text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y - 27)
+			text.Text = "[ "..p.Name.." ]"
+			text.Visible = true
+		else
+			text.Visible = false
+		end
+	end)
+end
+
+local function p_added(p)
+	if p.Character then
+		esp(p,p.Character)
+	end
+	p.CharacterAdded:Connect(function(cr)
+		esp(p,cr)
+	end)
+end
+
+for i,p in next, ps:GetPlayers() do 
+	if p ~= lp then
+		p_added(p)
+	end
+end
+
+ps.PlayerAdded:Connect(p_added)
+end)
+
+VSection:NewButton("Skeleton ESP", "", function()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/ESPs/main/UniversalSkeleton.lua"))()
+
+
+local Skeletons = {}
+for _, Player in next, game.Players:GetChildren() do
+	table.insert(Skeletons, Library:NewSkeleton(Player, true));
+end
+game.Players.PlayerAdded:Connect(function(Player)
+	table.insert(Skeletons, Library:NewSkeleton(Player, true));
+end) 
+end);
+
+VSection:NewButton(" Tracer", "", function()
+  local function API_Check()
+    if Drawing == nil then
+        return "No"
+    else
+        return "Yes"
+    end
+end
+
+local Find_Required = API_Check()
+
+if Find_Required == "No" then
+    game:GetService("StarterGui"):SetCore("SendNotification",{
+        Title = "Exunys Developer";
+        Text = "Tracer script could not be loaded because your exploit is unsupported.";
+        Duration = math.huge;
+        Button1 = "OK"
+    })
+
+    return
+end
+
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Camera = game:GetService("Workspace").CurrentCamera
+local UserInputService = game:GetService("UserInputService")
+local TestService = game:GetService("TestService")
+
+local Typing = false
+
+_G.SendNotifications = true   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
+_G.DefaultSettings = false   -- If set to true then the tracer script would run with default settings regardless of any changes you made.
+
+_G.TeamCheck = false   -- If set to true then the script would create tracers only for the enemy team members.
+
+--[!]-- ONLY ONE OF THESE VALUES SHOULD BE SET TO TRUE TO NOT ERROR THE SCRIPT --[!]--
+
+_G.FromMouse = false   -- If set to true, the tracers will come from the position of your mouse curson on your screen.
+_G.FromCenter = false   -- If set to true, the tracers will come from the center of your screen.
+_G.FromBottom = true   -- If set to true, the tracers will come from the bottom of your screen.
+
+_G.TracersVisible = true   -- If set to true then the tracers will be visible and vice versa.
+_G.TracerColor = Color3.fromRGB(255, 80, 10)   -- The color that the tracers would appear as.
+_G.TracerThickness = 1   -- The thickness of the tracers.
+_G.TracerTransparency = 0.7   -- The transparency of the tracers.
+
+_G.ModeSkipKey = Enum.KeyCode.E   -- The key that changes between modes that indicate where will the tracers come from.
+_G.DisableKey = Enum.KeyCode.Q   -- The key that disables / enables the tracers.
+
+local function CreateTracers()
+    for _, v in next, Players:GetPlayers() do
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            local TracerLine = Drawing.new("Line")
+    
+            RunService.RenderStepped:Connect(function()
+                if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
+                    local HumanoidRootPart_Position, HumanoidRootPart_Size = workspace[v.Name].HumanoidRootPart.CFrame, workspace[v.Name].HumanoidRootPart.Size * 1
+                    local Vector, OnScreen = Camera:WorldToViewportPoint(HumanoidRootPart_Position * CFrame.new(0, -HumanoidRootPart_Size.Y, 0).p)
+                    
+                    TracerLine.Thickness = _G.TracerThickness
+                    TracerLine.Transparency = _G.TracerTransparency
+                    TracerLine.Color = _G.TracerColor
+
+                    if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false then
+                        TracerLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+                    elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false then
+                        TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+                    elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true then
+                        TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
+                    end
+
+                    if OnScreen == true  then
+                        TracerLine.To = Vector2.new(Vector.X, Vector.Y)
+                        if _G.TeamCheck == true then 
+                            if Players.LocalPlayer.Team ~= v.Team then
+                                TracerLine.Visible = _G.TracersVisible
+                            else
+                                TracerLine.Visible = false
+                            end
+                        else
+                            TracerLine.Visible = _G.TracersVisible
+                        end
+                    else
+                        TracerLine.Visible = false
+                    end
+                else
+                    TracerLine.Visible = false
+                end
+            end)
+
+            Players.PlayerRemoving:Connect(function()
+                TracerLine.Visible = false
+            end)
+        end
+    end
+
+    Players.PlayerAdded:Connect(function(Player)
+        Player.CharacterAdded:Connect(function(v)
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                local TracerLine = Drawing.new("Line")
+        
+                RunService.RenderStepped:Connect(function()
+                    if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
+                        local HumanoidRootPart_Position, HumanoidRootPart_Size = workspace[v.Name].HumanoidRootPart.CFrame, workspace[v.Name].HumanoidRootPart.Size * 1
+                    	local Vector, OnScreen = Camera:WorldToViewportPoint(HumanoidRootPart_Position * CFrame.new(0, -HumanoidRootPart_Size.Y, 0).p)
+                        
+                        TracerLine.Thickness = _G.TracerThickness
+                        TracerLine.Transparency = _G.TracerTransparency
+                        TracerLine.Color = _G.TracerColor
+
+                        if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false then
+                            TracerLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+                        elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false then
+                            TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+                        elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true then
+                            TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
+                        end
+
+                        if OnScreen == true  then
+                            TracerLine.To = Vector2.new(Vector.X, Vector.Y)
+                            if _G.TeamCheck == true then 
+                                if Players.LocalPlayer.Team ~= Player.Team then
+                                    TracerLine.Visible = _G.TracersVisible
+                                else
+                                    TracerLine.Visible = false
+                                end
+                            else
+                                TracerLine.Visible = _G.TracersVisible
+                            end
+                        else
+                            TracerLine.Visible = false
+                        end
+                    else
+                        TracerLine.Visible = false
+                    end
+                end)
+
+                Players.PlayerRemoving:Connect(function()
+                    TracerLine.Visible = false
+                end)
+            end
+        end)
+    end)
+end
+
+UserInputService.TextBoxFocused:Connect(function()
+    Typing = true
+end)
+
+UserInputService.TextBoxFocusReleased:Connect(function()
+    Typing = false
+end)
+
+UserInputService.InputBegan:Connect(function(Input)
+    if Input.KeyCode == _G.ModeSkipKey and Typing == false then
+        if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false and _G.TracersVisible == true then
+            _G.FromCenter = false
+            _G.FromBottom = true
+            _G.FromMouse = false
+
+            if _G.SendNotifications == true then
+                game:GetService("StarterGui"):SetCore("SendNotification",{
+                    Title = "Exunys Developer";
+                    Text = "Tracers will be now coming from the bottom of your screen (Mode 1)";
+                    Duration = 5;
+                })
+            end
+        elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true and _G.TracersVisible == true then
+            _G.FromCenter = true
+            _G.FromBottom = false
+            _G.FromMouse = false
+
+            if _G.SendNotifications == true then
+                game:GetService("StarterGui"):SetCore("SendNotification",{
+                    Title = "Exunys Developer";
+                    Text = "Tracers will be now coming from the center of your screen (Mode 2)";
+                    Duration = 5;
+                })
+            end
+        elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false and _G.TracersVisible == true then
+            _G.FromCenter = false
+            _G.FromBottom = false
+            _G.FromMouse = true
+
+            if _G.SendNotifications == true then
+                game:GetService("StarterGui"):SetCore("SendNotification",{
+                    Title = "Exunys Developer";
+                    Text = "Tracers will be now coming from the position of your mouse cursor on your screen (Mode 3)";
+                    Duration = 5;
+                })
+            end
+        end
+    elseif Input.KeyCode == _G.DisableKey and Typing == false then
+        _G.TracersVisible = not _G.TracersVisible
+        
+        if _G.SendNotifications == true then
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Exunys Developer";
+                Text = "The tracers' visibility is now set to "..tostring(_G.TracersVisible)..".";
+                Duration = 5;
+            })
+        end
+    end
+end)
+
+if _G.DefaultSettings == true then
+    _G.TeamCheck = false
+    _G.FromMouse = false
+    _G.FromCenter = false
+    _G.FromBottom = true
+    _G.TracersVisible = true
+    _G.TracerColor = Color3.fromRGB(179, 238, 58)
+    _G.TracerThickness = 1
+    _G.TracerTransparency = 0.5
+    _G.ModeSkipKey = Enum.KeyCode.E
+    _G.DisableKey = Enum.KeyCode.Q
+end
+
+local Success, Errored = pcall(function()
+    CreateTracers()
+end)
+
+if Success and not Errored then
+    if _G.SendNotifications == true then
+        game:GetService("StarterGui"):SetCore("SendNotification",{
+            Title = "Exunys Developer";
+            Text = "Tracer script has successfully loaded.";
+            Duration = 5;
+        })
+    end
+elseif Errored and not Success then
+    if _G.SendNotifications == true then
+        game:GetService("StarterGui"):SetCore("SendNotification",{
+            Title = "Exunys Developer";
+            Text = "Tracer script has errored while loading, please check the developer console! (F9)";
+            Duration = 5;
+        })
+    end
+    TestService:Message("The tracer script has errored, please notify Exunys with the following information :")
+    warn(Errored)
+    print("!! IF THE ERROR IS A FALSE POSITIVE (says that a player cannot be found) THEN DO NOT BOTHER !!")
+end
+end);
+
+VSection:NewButton("ServerHop", " ", function()
+    local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
+
+module:Teleport(game.PlaceId)
+end)
+
+VSection:NewButton("Rejoin", " ", function()
+    local ts = game:GetService("TeleportService")
+
+local p = game:GetService("Players").LocalPlayer
+
+
+
+ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
+end)
+
+VSection:NewButton("Server Browser", "", function()
+  loadstring(game:HttpGet"https://rawscripts.net/raw/Server-Browser_80")()
+end);
+
+GSection:NewButton("Joined Players Notify", "", function()
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/leg1337/legadmv2/main/legadminv2.lua'))()
+end);
+
+
+GSection:NewButton("Mobile Keyboard ", "", function()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+end);
+
+GSection:NewButton("Custom Keyboard ", "", function()
+  loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))()
+end);
+
+GSection:NewButton("Chat Bypass", "", function()
+  loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-NEW-RBCByp-The-BEST-Chat-Bypasser-8299"))()
+end);
+
+GSection:NewButton("Nameless Admin", "", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
+end);
+
+GSection:NewButton("infinite Yield", " ", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+GSection:NewButton("Cyilindrical", "5758092", function()
+loadstring(game:HttpGet('https://github.com/bifungiji/the-scripter/raw/main/Finger'))()
+end);
