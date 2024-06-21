@@ -1,5 +1,7 @@
+
+-- Azure V4 Mobile Working Version
+-- Bir Turk Tarafindan Yapıldı
 -- modified by $hit Talker
--- If You Don't Like The Script Or The UI Don't Be Nonsense On My DC Server 
     
 if (not LPH_OBFUSCATED) then
     LPH_NO_VIRTUALIZE = function(...) return (...) end;
@@ -114,12 +116,12 @@ end
                 Vehicle = false
             },
             Smoothing = {
-                Horizontal = 0,
-                Vertical = 0
+                Horizontal = 1,
+                Vertical = 1
             },
             Prediction = {
                 Horizontal = 0,
-                Vertical = 0
+                Vertical = 0.160126357
             },
             Resolver = {
                 Enabled = false,
@@ -901,6 +903,10 @@ end
                         FakeCFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance))) * CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
                     elseif Type == "Random Target" and Script.Locals.IsTargetting and Script.Locals.Target and Settings.Combat.Enabled then
                         FakeCFrame = CFrame.new(Script.Locals.Target.Character.HumanoidRootPart.Position + Vector3.new(math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance))) * CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
+                    elseif Type == "2DBox" and Script.Locals.IsTargetting and Script.Locals.Target and Settings.Combat.Enabled then
+                      FakeCFrame = CFrame.new(Script.Locals.Target.Character.HumanoidRootPart.Position + Vector3.new(math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), 0, math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance))) * CFrame.Angles(math.rad(math.random(0, 1)), 0, math.rad(math.random(0, 1)))
+                    elseif Type == "3DBox" and Script.Locals.IsTargetting and Script.Locals.Target and Settings.Combat.Enabled then
+                      FakeCFrame = CFrame.new(Script.Locals.Target.Character.HumanoidRootPart.Position + Vector3.new(math.random(-15, 15), math.random(-8, 8), math.random(-15, 15))) * CFrame.Angles(math.rad(math.random(0, 1)), math.rad(math.random(0, 1)), math.rad(math.random(0, 1)))
                     end
 
                     Script.Utility.Drawings["CFrameVisualize"]:SetPrimaryPartCFrame(FakeCFrame)
@@ -1450,7 +1456,7 @@ Tab:AddDropdown({
 	Default = "HumanoidRootPart",
 	Options = {"Head", "HumanoidRootPart", "UpperTorso", "LowerTorso"},
 	Callback = function(Value)
-		Settings.Combat.AimPart = Value
+		print(Value)
 	end    
 })
 
@@ -1577,30 +1583,6 @@ Tab:AddTextbox({
 	end	  
 })
 
-local Section = Tab:AddSection({
-	Name = "Smoothing"
-})
-
-Tab:AddTextbox({
-	Name = "Horizonal",
-	Default = "1",
-	TextDisappear = false,
-	Callback = function(Value)
-Settings.Combat.Smoothing.Horizontal = Value
-	end	  
-})
-
-Tab:AddTextbox({
-	Name = "Vertical",
-	Default = "1",
-	TextDisappear = false,
-	Callback = function(Value)
-Settings.Combat.Smoothing.Vertical = Value
-	end	  
-})
-
-
-
 local CSection = Tab:AddSection({
 	Name = "Strafe"
 })
@@ -1633,7 +1615,7 @@ Tab:AddColorpicker({
 Tab:AddDropdown({
 	Name = "Type",
 	Default = "Custom",
-	Options = {"Custom", "Random", "Random Target", "Target Strafe", "Local Strafe"},
+	Options = {"Custom", "Random", "Random Target", "Target Strafe", "Local Strafe", "3DBox", "2DBox"},
 	Callback = function(Value)
 Settings.AntiAim.CSync.Type = Value
 	end    
@@ -1729,7 +1711,7 @@ Tab:AddToggle({
 
 Tab:AddColorpicker({
 	Name = "Color",
-	Default = Color3.fromRGB(255, 255, 255),
+	Default = Color3.fromRGB(240, 255, 150),
 	Callback = function(Value)
 		Settings.Combat.Visuals.Tracer.Color = Value
 	end	  
@@ -1858,7 +1840,7 @@ ATab:AddTextbox({
 
 
 local Section = ATab:AddSection({
-	Name = "Bullet Ä°mpacts"
+	Name = "Bullet İmpacts"
 })
 
 ATab:AddToggle({
