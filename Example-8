@@ -1,0 +1,9 @@
+local Name = game.Players.LocalPlayer.Name
+
+if Name == "dahoodianeznga" or Name == "0xSedative" or Name == "harbici40" or Name == "PASHA_3448" or Name == "detpays11" or Name == "nemesisx810" or Name == "pabloemilio7834" or Name == "kaan34442q" or Name == "skabladx34" or Name == "YourNameIsHereXIIIII" or Name == "detpays22" or Name == "hxhddhchfhfjrhr" then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-6%20(AGE%20WH%C4%B0TEL%C4%B0ST)"))()
+else
+  game.Players.LocalPlayer:kick("Whitelist Error")
+end
+
+ 
