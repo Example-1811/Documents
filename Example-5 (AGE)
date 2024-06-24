@@ -1,19 +1,42 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
+
+
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-4%20(ESP)"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-7%20(Modifed%20Kavo)"))();
 local Window = Library.CreateLib("Wizard.Lua Private", "GrapeTheme");
+
+
 local farmTab = Window:NewTab("Farm");
 local farmSection = farmTab:NewSection("Farm");
+
 local MTab = Window:NewTab("Target");
 local MSection = MTab:NewSection("Target");
-local QTab = Window:NewTab("Player");
-local QSection = QTab:NewSection("Player");
-local VTab = Window:NewTab("Misc");
-local VSection = VTab:NewSection("Misc");
-local KTab = Window:NewTab("Keys Menu");
-local KSection = KTab:NewSection("Keys Menu");
-local TTab = Window:NewTab("Locations Menu");
-local TSection = TTab:NewSection("Locations Menu");
-local GTab = Window:NewTab("Scripts Menu");
-local GSection = GTab:NewSection("Scripts Menu");
+
+local QTab = Window:NewTab("Rapid Punch");
+local QSection = QTab:NewSection("Rapid Punch");
+
+local AABBTab = Window:NewTab("Toggle's");
+local AABBSection = AABBTab:NewSection("Toggle's");
+
+local CCXTab = Window:NewTab("ESP");
+local CCXSection = CCXTab:NewSection("ESP");
+
+local VTab = Window:NewTab("Crash");
+local VSection = VTab:NewSection("Crash");
+
+local KGTab = Window:NewTab("Misc");
+local KGSection = KGTab:NewSection("Map");
+local KLSection = KGTab:NewSection("Telekinesis");
+local KCSection = KGTab:NewSection("Server");
+
+
+
+local TTab = Window:NewTab("Locations");
+local TSection = TTab:NewSection("Locations");
+
+local GTab = Window:NewTab("Settings");
+local GSection = GTab:NewSection("Settings");
+
 _G.CToggle = false;
 _G.metalskin = false;
 _G.LOCALPLAYER = game.Players.LocalPlayer.Name;
@@ -1102,7 +1125,12 @@ end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
 end);
-QSection:NewToggle("Spawn Point", "", function(state)
+
+
+
+
+
+AABBSection:NewToggle("Spawn Point", "", function(state)
 	if state then
 	  getgenv().Deathcheck = true;
 	  local varX = player.Character.UpperTorso.Position['X'];
@@ -1125,7 +1153,7 @@ QSection:NewToggle("Spawn Point", "", function(state)
 	end
 end);
 
-QSection:NewButton("Destroy Safezone & Parts", "", function()
+KGSection:NewButton("Destroy Safezone & Parts", "", function()
   game:GetService("Workspace").City.Buildings:Destroy();
   game:GetService("Workspace").City.Interactive.Bank.Model:Destroy();
   game:GetService("Workspace").City.Interactive["Police Station"]:GetChildren()[28]:Destroy();
@@ -1147,7 +1175,7 @@ QSection:NewButton("Destroy Safezone & Parts", "", function()
   game:GetService("Workspace").SafeZones.Barrier:Destroy();
 end);
 
-QSection:NewToggle("Hide Title Gui", "", function(state)
+AABBSection:NewToggle("Hide Title Gui", "", function(state)
   if state then
     getgenv().hide = true;
     while hide do
@@ -1166,7 +1194,7 @@ QSection:NewToggle("Hide Title Gui", "", function(state)
   end
 end);
 
-QSection:NewToggle("Auto-Grab", "", function(state)
+AABBSection:NewToggle("Auto-Grab", "", function(state)
 	if state then
 		getgenv().teleaura = true;
 		while teleaura do
@@ -1183,7 +1211,9 @@ QSection:NewToggle("Auto-Grab", "", function(state)
 		end);
 	end
 end);
-QSection:NewToggle("Tele-Fling", "", function(state)
+
+
+AABBSection:NewToggle("Tele-Fling", "", function(state)
 	if state then
 		getgenv().telesauras = true;
 		while telesauras do
@@ -1199,7 +1229,9 @@ QSection:NewToggle("Tele-Fling", "", function(state)
 		end);
 	end
 end);
-QSection:NewToggle("Anti-Tele", "", function(state)
+
+
+AABBSection:NewToggle("Anti-Tele", "", function(state)
   if state then
     getgenv().localtele = true;
     spawn(function()
@@ -1215,7 +1247,68 @@ QSection:NewToggle("Anti-Tele", "", function(state)
   end
 end);
 
-QSection:NewToggle("Auto-Metal", " ", function(state)
+
+AABBSection:NewToggle("Anti AutoKill", "", function(state)
+getgenv().Finobe1 = state
+local NewCFrame = CFrame.new
+local LocalFinobe = game.Players.LocalPlayer
+local InputService = game:GetService("UserInputService")
+local Runfinobe = game:GetService("RunService")
+
+local Finobe2; 
+Runfinobe.heartbeat:Connect(function()
+    if LocalFinobe.Character then 
+        local FinobeChar = LocalFinobe.Character.HumanoidRootPart
+        local Offset = FinobeChar.CFrame * NewCFrame(9e9, 0/0, math.huge)
+        
+        if getgenv().Finobe1 then 
+            Finobe2 = FinobeChar.CFrame
+            FinobeChar.CFrame = Offset
+            Runfinobe.RenderStepped:Wait()
+            FinobeChar.CFrame = Finobe2
+        end 
+    end 
+end)
+
+InputService.InputBegan:Connect(function(sigma)
+    if sigma.KeyCode == Enum.KeyCode[FINOBE_KEYBIND] then 
+        getgenv().Finobe1 = not getgenv().Finobe1
+        
+        if not Finobe1 then 
+            LocalFinobe.Character.HumanoidRootPart.CFrame = Finobe2
+            -- 
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Anti Autokill";
+                Text = "Disabled";
+            })
+        else 
+            Finobe2 = nil 
+            -- 
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Anti Auto Kill";
+                Text = "Enabled";
+            })
+        end 
+    end 
+end)    
+
+local finobeHookSigmaChatWtfCreateRemindedMeAboutThisShittyAssExploitBtw_MiseryOwnerIsACuck
+finobeHookSigmaChatWtfCreateRemindedMeAboutThisShittyAssExploitBtw_MiseryOwnerIsACuck = hookmetamethod(game, "__index", newcclosure(function(self, key)
+    if not checkcaller() then
+        if key == "CFrame" and getgenv().Finobe1 and LocalFinobe.Character and LocalFinobe.Character:FindFirstChild("HumanoidRootPart") and LocalFinobe.Character:FindFirstChild("Humanoid") and LocalFinobe.Character:FindFirstChild("Humanoid").Health > 0 then
+            if self == LocalFinobe.Character.HumanoidRootPart and Finobe2 ~= nil then
+                return Finobe2
+            end
+        end
+    end
+    -- 
+    return finobeHookSigmaChatWtfCreateRemindedMeAboutThisShittyAssExploitBtw_MiseryOwnerIsACuck(self, key)
+end))
+
+end);
+
+
+AABBSection:NewToggle("Auto-Metal", " ", function(state)
   if state then
     getgenv().metal = true;
     while metal do
@@ -1232,7 +1325,9 @@ QSection:NewToggle("Auto-Metal", " ", function(state)
     end);
   end
 end);
-QSection:NewToggle("Safe Teleport", "", function(state)
+
+
+AABBSection:NewToggle("Safe Teleport", "", function(state)
   if state then
     local player1 = game.Players.LocalPlayer.Character.Humanoid.Health;
     local math = player18 / 30;
@@ -1253,7 +1348,7 @@ QSection:NewToggle("Safe Teleport", "", function(state)
     end);
   end
 end);
-QSection:NewToggle("Anti-Knock", "", function(state)
+AABBSection:NewToggle("Anti-Knock", "", function(state)
   if state then
     getgenv().AntiKnockback = true;
     while AntiKnockback do
@@ -1275,13 +1370,36 @@ QSection:NewToggle("Anti-Knock", "", function(state)
     end);
   end
 end);
-QSection:NewToggle("Anchor RootPart", "", function(state)
+
+
+AABBSection:NewToggle("Anchor RootPart", "", function(state)
   if state then
     player.Character.HumanoidRootPart.Anchored = true;
   else
     player.Character.HumanoidRootPart.Anchored = false;
   end
 end);
+
+
+
+CCXSection:NewToggle("Enable", "", function(arg)
+ESP.Enabled = arg
+ESP.TeamMates = arg
+ESP.FaceCamera = arg
+end);
+
+CCXSection:NewToggle("Name", "", function(arg)
+ESP.Names = arg
+end);
+
+CCXSection:NewToggle("Box", "", function(arg)
+ESP.Boxes = arg
+end);
+
+CCXSection:NewToggle("Tracer", "", function(arg)
+ESP.Tracers = arg
+end);
+
 VSection:NewButton("Mega Crash", "", function(state)
   local x = 0;
   local y = 0
@@ -1369,6 +1487,7 @@ end);
 
 VSection:NewButton("Anti-Crash", "", function()
   game.ClientStorage.Effects.Shield:Destroy()
+  game.Workspace.Effects:destroy() 
 end);
 
 GetList();
@@ -1390,6 +1509,7 @@ MSection:NewButton("Teleport To Player", "", function()
     breakvelocity();
   end);
 end);
+
 MSection:NewToggle("Spectate Player", "", function(state)
   spawn(function()
     if state then
@@ -1716,8 +1836,8 @@ MSection:NewToggle("Disable All Telekinesis", "", function(state)
   end);
 end);
 
-KSection:NewKeybind("Carry Player", "", Enum.KeyCode['H'], function()
-  if (_G.CToggle == false) then
+GSection:NewKeybind("Carry Player", "", Enum.KeyCode['H'], function()
+if (_G.CToggle == false) then
     spawn(function()
 		  getNearPlayer(99);
       wait();
@@ -1733,7 +1853,7 @@ KSection:NewKeybind("Carry Player", "", Enum.KeyCode['H'], function()
               Xt = player.Character.HumanoidRootPart.Position['X'];
               Yt = player.Character.HumanoidRootPart.Position['Y'];
               Zt = player.Character.HumanoidRootPart.Position['Z'];
-              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(Xt, Yt + 8, Zt + 5);
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(Xt, Yt + 5, Zt + 5);
             end
           end
         end);
@@ -1747,7 +1867,7 @@ KSection:NewKeybind("Carry Player", "", Enum.KeyCode['H'], function()
     end);
   end
 end);
-KSection:NewKeybind("Tele-Lock", "", Enum.KeyCode['T'], function()
+GSection:NewKeybind("Tele-Lock", "", Enum.KeyCode['T'], function()
   spawn(function()
     local LookVector = game.Workspace.Camera.CFrame.LookVector;
     game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, true);
@@ -1755,7 +1875,7 @@ KSection:NewKeybind("Tele-Lock", "", Enum.KeyCode['T'], function()
   end);
 end);
 
-KSection:NewKeybind("Tele-kill", "", Enum.KeyCode['G'], function()
+GSection:NewKeybind("Tele-kill", "", Enum.KeyCode['G'], function()
   spawn(function()
 	  getNearPlayer(99);
     for i, v in pairs(plrlist) do
@@ -1773,7 +1893,8 @@ KSection:NewKeybind("Tele-kill", "", Enum.KeyCode['G'], function()
     end
   end);
 end);
-KSection:NewKeybind("Release-Tele", "", Enum.KeyCode['C'], function()
+
+GSection:NewKeybind("Release-Tele", "", Enum.KeyCode['C'], function()
   plrlist = {};
   Players = game:GetService("Players");
   for i, player in pairs(Players:GetPlayers()) do
@@ -1783,7 +1904,7 @@ KSection:NewKeybind("Release-Tele", "", Enum.KeyCode['C'], function()
   end
 end);
 
-KSection:NewKeybind("TP-Motel", "", Enum.KeyCode.Z, function()
+GSection:NewKeybind("TP-Motel", "", Enum.KeyCode.Z, function()
   if (_G.bring == true) then
     game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.telekinesisPosition:Destroy()
     game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.CFrame = CFrame.new(-1745, 95, -1530);
@@ -1794,7 +1915,8 @@ KSection:NewKeybind("TP-Motel", "", Enum.KeyCode.Z, function()
   end
   breakvelocity();
 end);
-KSection:NewKeybind("TP-Middle", "", Enum.KeyCode.V, function()
+
+GSection:NewKeybind("TP-Middle", "", Enum.KeyCode.V, function()
   if (_G.bring == true) then
     game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.telekinesisPosition:Destroy()
     game:GetService("Workspace")[_G.teleportplayer].HumanoidRootPart.CFrame = CFrame.new(-376, 94, 91);
@@ -1805,7 +1927,8 @@ KSection:NewKeybind("TP-Middle", "", Enum.KeyCode.V, function()
   end
   breakvelocity();
 end);
-KSection:NewKeybind("Toggle UI", "", Enum.KeyCode.RightShift, function()
+
+GSection:NewKeybind("Toggle UI", "", Enum.KeyCode.RightShift, function()
   Library:ToggleUI();
 end);
 farmSection:NewToggle("Orb Farm", "", function(state)
@@ -2068,524 +2191,76 @@ farmSection:NewToggle("Thug Farm", "", function(state)
 end);
 
 
-VSection:NewButton("BoxEsp", " ", function()
-    -- Settings
-local Settings = {
-    Box_Color = Color3.fromRGB(255, 0, 0),
-    Box_Thickness = 2,
-    Team_Check = false,
-    Team_Color = false,
-    Autothickness = true
-}
 
---Locals
-local Space = game:GetService("Workspace")
-local Player = game:GetService("Players").LocalPlayer
-local Camera = Space.CurrentCamera
 
--- Locals
-local function NewLine(color, thickness)
-    local line = Drawing.new("Line")
-    line.Visible = false
-    line.From = Vector2.new(0, 0)
-    line.To = Vector2.new(0, 0)
-    line.Color = color
-    line.Thickness = thickness
-    line.Transparency = 1
-    return line
-end
-
-local function Vis(lib, state)
-    for i, v in pairs(lib) do
-        v.Visible = state
-    end
-end
-
-local function Colorize(lib, color)
-    for i, v in pairs(lib) do
-        v.Color = color
-    end
-end
-
-local Black = Color3.fromRGB(0, 0, 0)
-
-local function Rainbow(lib, delay)
-    for hue = 0, 1, 1/30 do
-        local color = Color3.fromHSV(hue, 0.6, 1)
-        Colorize(lib, color)
-        wait(delay)
-    end
-    Rainbow(lib)
-end
---Main Draw Function
-local function Main(plr)
-    repeat wait() until plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil
-    local R15
-    if plr.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-        R15 = true
-    else 
-        R15 = false
-    end
-    local Library = {
-        TL1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-        TL2 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-
-        TR1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-        TR2 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-
-        BL1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-        BL2 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-
-        BR1 = NewLine(Settings.Box_Color, Settings.Box_Thickness),
-        BR2 = NewLine(Settings.Box_Color, Settings.Box_Thickness)
-    }
-    coroutine.wrap(Rainbow)(Library, 0.15)
-    local oripart = Instance.new("Part")
-    oripart.Parent = Space
-    oripart.Transparency = 1
-    oripart.CanCollide = false
-    oripart.Size = Vector3.new(1, 1, 1)
-    oripart.Position = Vector3.new(0, 0, 0)
-    --Updater Loop
-    local function Updater()
-        local c 
-        c = game:GetService("RunService").RenderStepped:Connect(function()
-            if plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character.Humanoid.Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
-                local Hum = plr.Character
-                local HumPos, vis = Camera:WorldToViewportPoint(Hum.HumanoidRootPart.Position)
-                if vis then
-                    oripart.Size = Vector3.new(Hum.HumanoidRootPart.Size.X, Hum.HumanoidRootPart.Size.Y*1.5, Hum.HumanoidRootPart.Size.Z)
-                    oripart.CFrame = CFrame.new(Hum.HumanoidRootPart.CFrame.Position, Camera.CFrame.Position)
-                    local SizeX = oripart.Size.X
-                    local SizeY = oripart.Size.Y
-                    local TL = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(SizeX, SizeY, 0)).p)
-                    local TR = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(-SizeX, SizeY, 0)).p)
-                    local BL = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(SizeX, -SizeY, 0)).p)
-                    local BR = Camera:WorldToViewportPoint((oripart.CFrame * CFrame.new(-SizeX, -SizeY, 0)).p)
-
-                    if Settings.Team_Check then
-                        if plr.TeamColor == Player.TeamColor then
-                            Colorize(Library, Color3.fromRGB(0, 255, 0))
-                        else 
-                            Colorize(Library, Color3.fromRGB(255, 0, 0))
-                        end
-                    end
-
-                    if Settings.Team_Color then
-                        Colorize(Library, plr.TeamColor.Color)
-                    end
-
-                    local ratio = (Camera.CFrame.p - Hum.HumanoidRootPart.Position).magnitude
-                    local offset = math.clamp(1/ratio*750, 2, 300)
-
-                    Library.TL1.From = Vector2.new(TL.X, TL.Y)
-                    Library.TL1.To = Vector2.new(TL.X + offset, TL.Y)
-                    Library.TL2.From = Vector2.new(TL.X, TL.Y)
-                    Library.TL2.To = Vector2.new(TL.X, TL.Y + offset)
-
-                    Library.TR1.From = Vector2.new(TR.X, TR.Y)
-                    Library.TR1.To = Vector2.new(TR.X - offset, TR.Y)
-                    Library.TR2.From = Vector2.new(TR.X, TR.Y)
-                    Library.TR2.To = Vector2.new(TR.X, TR.Y + offset)
-
-                    Library.BL1.From = Vector2.new(BL.X, BL.Y)
-                    Library.BL1.To = Vector2.new(BL.X + offset, BL.Y)
-                    Library.BL2.From = Vector2.new(BL.X, BL.Y)
-                    Library.BL2.To = Vector2.new(BL.X, BL.Y - offset)
-
-                    Library.BR1.From = Vector2.new(BR.X, BR.Y)
-                    Library.BR1.To = Vector2.new(BR.X - offset, BR.Y)
-                    Library.BR2.From = Vector2.new(BR.X, BR.Y)
-                    Library.BR2.To = Vector2.new(BR.X, BR.Y - offset)
-
-                    Vis(Library, true)
-
-                    if Settings.Autothickness then
-                        local distance = (Player.Character.HumanoidRootPart.Position - oripart.Position).magnitude
-                        local value = math.clamp(1/distance*100, 1, 4) --0.1 is min thickness, 6 is max
-                        for u, x in pairs(Library) do
-                            x.Thickness = value
-                        end
-                    else 
-                        for u, x in pairs(Library) do
-                            x.Thickness = Settings.Box_Thickness
-                        end
-                    end
-                else 
-                    Vis(Library, false)
-                end
-            else 
-                Vis(Library, false)
-                if game:GetService("Players"):FindFirstChild(plr.Name) == nil then
-                    for i, v in pairs(Library) do
-                        v:Remove()
-                        oripart:Destroy()
-                    end
-                    c:Disconnect()
-                end
+KLSection:NewButton("Bring Motel", "", function()
+if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(-1745, 95, -1530);
             end
-        end)
-    end
-    coroutine.wrap(Updater)()
-end
-
--- Draw Boxes
-for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-    if v.Name ~= Player.Name then
-      coroutine.wrap(Main)(v)
-    end
-end
-
-game:GetService("Players").PlayerAdded:Connect(function(newplr)
-    coroutine.wrap(Main)(newplr)
-end)
-end)
-
-VSection:NewButton("NameEsp", " ", function()
-    local c = workspace.CurrentCamera
-local ps = game:GetService("Players")
-local lp = ps.LocalPlayer
-local rs = game:GetService("RunService")
-
-local function esp(p,cr)
-	local h = cr:WaitForChild("Humanoid")
-	local hrp = cr:WaitForChild("Head")
-
-	local text = Drawing.new("Text")
-	text.Visible = false
-	text.Center = true
-	text.Outline = false 
-	text.Font = 3
-	text.Size = 16.16
-	text.Color = Color3.new(170,170,170)
-
-	local conection
-	local conection2
-	local conection3
-
-	local function dc()
-		text.Visible = false
-		text:Remove()
-		if conection then
-			conection:Disconnect()
-			conection = nil 
-		end
-		if conection2 then
-			conection2:Disconnect()
-			conection2 = nil 
-		end
-		if conection3 then
-			conection3:Disconnect()
-			conection3 = nil 
-		end
-	end
-
-	conection2 = cr.AncestryChanged:Connect(function(_,parent)
-		if not parent then
-			dc()
-		end
-	end)
-
-	conection3 = h.HealthChanged:Connect(function(v)
-		if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
-			dc()
-		end
-	end)
-
-	conection = rs.RenderStepped:Connect(function()
-		local hrp_pos,hrp_onscreen = c:WorldToViewportPoint(hrp.Position)
-		if hrp_onscreen then
-			text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y - 27)
-			text.Text = "[ "..p.Name.." ]"
-			text.Visible = true
-		else
-			text.Visible = false
-		end
-	end)
-end
-
-local function p_added(p)
-	if p.Character then
-		esp(p,p.Character)
-	end
-	p.CharacterAdded:Connect(function(cr)
-		esp(p,cr)
-	end)
-end
-
-for i,p in next, ps:GetPlayers() do 
-	if p ~= lp then
-		p_added(p)
-	end
-end
-
-ps.PlayerAdded:Connect(p_added)
-end)
-
-VSection:NewButton("Skeleton ESP", "", function()
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Blissful4992/ESPs/main/UniversalSkeleton.lua"))()
-
-
-local Skeletons = {}
-for _, Player in next, game.Players:GetChildren() do
-	table.insert(Skeletons, Library:NewSkeleton(Player, true));
-end
-game.Players.PlayerAdded:Connect(function(Player)
-	table.insert(Skeletons, Library:NewSkeleton(Player, true));
-end) 
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
 end);
 
-VSection:NewButton(" Tracer", "", function()
-  local function API_Check()
-    if Drawing == nil then
-        return "No"
-    else
-        return "Yes"
-    end
-end
-
-local Find_Required = API_Check()
-
-if Find_Required == "No" then
-    game:GetService("StarterGui"):SetCore("SendNotification",{
-        Title = "Exunys Developer";
-        Text = "Tracer script could not be loaded because your exploit is unsupported.";
-        Duration = math.huge;
-        Button1 = "OK"
-    })
-
-    return
-end
-
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local Camera = game:GetService("Workspace").CurrentCamera
-local UserInputService = game:GetService("UserInputService")
-local TestService = game:GetService("TestService")
-
-local Typing = false
-
-_G.SendNotifications = true   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
-_G.DefaultSettings = false   -- If set to true then the tracer script would run with default settings regardless of any changes you made.
-
-_G.TeamCheck = false   -- If set to true then the script would create tracers only for the enemy team members.
-
---[!]-- ONLY ONE OF THESE VALUES SHOULD BE SET TO TRUE TO NOT ERROR THE SCRIPT --[!]--
-
-_G.FromMouse = false   -- If set to true, the tracers will come from the position of your mouse curson on your screen.
-_G.FromCenter = false   -- If set to true, the tracers will come from the center of your screen.
-_G.FromBottom = true   -- If set to true, the tracers will come from the bottom of your screen.
-
-_G.TracersVisible = true   -- If set to true then the tracers will be visible and vice versa.
-_G.TracerColor = Color3.fromRGB(255, 80, 10)   -- The color that the tracers would appear as.
-_G.TracerThickness = 1   -- The thickness of the tracers.
-_G.TracerTransparency = 0.7   -- The transparency of the tracers.
-
-_G.ModeSkipKey = Enum.KeyCode.E   -- The key that changes between modes that indicate where will the tracers come from.
-_G.DisableKey = Enum.KeyCode.Q   -- The key that disables / enables the tracers.
-
-local function CreateTracers()
-    for _, v in next, Players:GetPlayers() do
-        if v.Name ~= game.Players.LocalPlayer.Name then
-            local TracerLine = Drawing.new("Line")
-    
-            RunService.RenderStepped:Connect(function()
-                if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
-                    local HumanoidRootPart_Position, HumanoidRootPart_Size = workspace[v.Name].HumanoidRootPart.CFrame, workspace[v.Name].HumanoidRootPart.Size * 1
-                    local Vector, OnScreen = Camera:WorldToViewportPoint(HumanoidRootPart_Position * CFrame.new(0, -HumanoidRootPart_Size.Y, 0).p)
-                    
-                    TracerLine.Thickness = _G.TracerThickness
-                    TracerLine.Transparency = _G.TracerTransparency
-                    TracerLine.Color = _G.TracerColor
-
-                    if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false then
-                        TracerLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
-                    elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false then
-                        TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
-                    elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true then
-                        TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
-                    end
-
-                    if OnScreen == true  then
-                        TracerLine.To = Vector2.new(Vector.X, Vector.Y)
-                        if _G.TeamCheck == true then 
-                            if Players.LocalPlayer.Team ~= v.Team then
-                                TracerLine.Visible = _G.TracersVisible
-                            else
-                                TracerLine.Visible = false
-                            end
-                        else
-                            TracerLine.Visible = _G.TracersVisible
-                        end
-                    else
-                        TracerLine.Visible = false
-                    end
-                else
-                    TracerLine.Visible = false
-                end
-            end)
-
-            Players.PlayerRemoving:Connect(function()
-                TracerLine.Visible = false
-            end)
-        end
-    end
-
-    Players.PlayerAdded:Connect(function(Player)
-        Player.CharacterAdded:Connect(function(v)
-            if v.Name ~= game.Players.LocalPlayer.Name then
-                local TracerLine = Drawing.new("Line")
-        
-                RunService.RenderStepped:Connect(function()
-                    if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
-                        local HumanoidRootPart_Position, HumanoidRootPart_Size = workspace[v.Name].HumanoidRootPart.CFrame, workspace[v.Name].HumanoidRootPart.Size * 1
-                    	local Vector, OnScreen = Camera:WorldToViewportPoint(HumanoidRootPart_Position * CFrame.new(0, -HumanoidRootPart_Size.Y, 0).p)
-                        
-                        TracerLine.Thickness = _G.TracerThickness
-                        TracerLine.Transparency = _G.TracerTransparency
-                        TracerLine.Color = _G.TracerColor
-
-                        if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false then
-                            TracerLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
-                        elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false then
-                            TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
-                        elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true then
-                            TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
-                        end
-
-                        if OnScreen == true  then
-                            TracerLine.To = Vector2.new(Vector.X, Vector.Y)
-                            if _G.TeamCheck == true then 
-                                if Players.LocalPlayer.Team ~= Player.Team then
-                                    TracerLine.Visible = _G.TracersVisible
-                                else
-                                    TracerLine.Visible = false
-                                end
-                            else
-                                TracerLine.Visible = _G.TracersVisible
-                            end
-                        else
-                            TracerLine.Visible = false
-                        end
-                    else
-                        TracerLine.Visible = false
-                    end
-                end)
-
-                Players.PlayerRemoving:Connect(function()
-                    TracerLine.Visible = false
-                end)
+KLSection:NewButton("Bring Middle", "", function()
+if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(-376, 94, 91);
             end
-        end)
-    end)
-end
-
-UserInputService.TextBoxFocused:Connect(function()
-    Typing = true
-end)
-
-UserInputService.TextBoxFocusReleased:Connect(function()
-    Typing = false
-end)
-
-UserInputService.InputBegan:Connect(function(Input)
-    if Input.KeyCode == _G.ModeSkipKey and Typing == false then
-        if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false and _G.TracersVisible == true then
-            _G.FromCenter = false
-            _G.FromBottom = true
-            _G.FromMouse = false
-
-            if _G.SendNotifications == true then
-                game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "Exunys Developer";
-                    Text = "Tracers will be now coming from the bottom of your screen (Mode 1)";
-                    Duration = 5;
-                })
-            end
-        elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true and _G.TracersVisible == true then
-            _G.FromCenter = true
-            _G.FromBottom = false
-            _G.FromMouse = false
-
-            if _G.SendNotifications == true then
-                game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "Exunys Developer";
-                    Text = "Tracers will be now coming from the center of your screen (Mode 2)";
-                    Duration = 5;
-                })
-            end
-        elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false and _G.TracersVisible == true then
-            _G.FromCenter = false
-            _G.FromBottom = false
-            _G.FromMouse = true
-
-            if _G.SendNotifications == true then
-                game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "Exunys Developer";
-                    Text = "Tracers will be now coming from the position of your mouse cursor on your screen (Mode 3)";
-                    Duration = 5;
-                })
-            end
-        end
-    elseif Input.KeyCode == _G.DisableKey and Typing == false then
-        _G.TracersVisible = not _G.TracersVisible
-        
-        if _G.SendNotifications == true then
-            game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "Exunys Developer";
-                Text = "The tracers' visibility is now set to "..tostring(_G.TracersVisible)..".";
-                Duration = 5;
-            })
-        end
-    end
-end)
-
-if _G.DefaultSettings == true then
-    _G.TeamCheck = false
-    _G.FromMouse = false
-    _G.FromCenter = false
-    _G.FromBottom = true
-    _G.TracersVisible = true
-    _G.TracerColor = Color3.fromRGB(179, 238, 58)
-    _G.TracerThickness = 1
-    _G.TracerTransparency = 0.5
-    _G.ModeSkipKey = Enum.KeyCode.E
-    _G.DisableKey = Enum.KeyCode.Q
-end
-
-local Success, Errored = pcall(function()
-    CreateTracers()
-end)
-
-if Success and not Errored then
-    if _G.SendNotifications == true then
-        game:GetService("StarterGui"):SetCore("SendNotification",{
-            Title = "Exunys Developer";
-            Text = "Tracer script has successfully loaded.";
-            Duration = 5;
-        })
-    end
-elseif Errored and not Success then
-    if _G.SendNotifications == true then
-        game:GetService("StarterGui"):SetCore("SendNotification",{
-            Title = "Exunys Developer";
-            Text = "Tracer script has errored while loading, please check the developer console! (F9)";
-            Duration = 5;
-        })
-    end
-    TestService:Message("The tracer script has errored, please notify Exunys with the following information :")
-    warn(Errored)
-    print("!! IF THE ERROR IS A FALSE POSITIVE (says that a player cannot be found) THEN DO NOT BOTHER !!")
-end
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
 end);
 
-VSection:NewButton("ServerHop", " ", function()
+
+
+
+KCSection:NewButton("ServerHop", " ", function()
     local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
 
 module:Teleport(game.PlaceId)
 end)
 
-VSection:NewButton("Rejoin", " ", function()
+KCSection:NewButton("Rejoin", " ", function()
     local ts = game:GetService("TeleportService")
 
 local p = game:GetService("Players").LocalPlayer
@@ -2595,11 +2270,11 @@ local p = game:GetService("Players").LocalPlayer
 ts:TeleportToPlaceInstance(game.PlaceId, game.JobId, p)
 end)
 
-VSection:NewButton("Server Browser", "", function()
+KCSection:NewButton("Server Browser", "", function()
   loadstring(game:HttpGet"https://rawscripts.net/raw/Server-Browser_80")()
 end);
 
-GSection:NewButton("Joined Players Notify", "", function()
+KCSection:NewButton("Joined Players Notify", "", function()
   loadstring(game:HttpGet('https://raw.githubusercontent.com/leg1337/legadmv2/main/legadminv2.lua'))()
 end);
 
