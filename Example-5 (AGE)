@@ -7,7 +7,7 @@ local Window = Library.CreateLib("Wizard.Lua Private", "GrapeTheme");
 local farmTab = Window:NewTab("Farm");
 local farmSection = farmTab:NewSection("Farm");
 
-local AHMTab = Window:NewTab("Target Farm (BETA) ");
+local AHMTab = Window:NewTab("Target Farm");
 local AHMSection = AHMTab:NewSection("Player 1");
 local AHTSection = AHMTab:NewSection("Player 2");
 
@@ -2359,6 +2359,40 @@ if (_G.CToggle == false) then
   end
 end);
 
+hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+
+local mouse = game.Players.LocalPlayer:GetMouse()
+
+KLSection:NewButton("Mouse Control", "", function()
+if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(mouse.Hit.X, mouse.Hit.Y, mouse.Hit.Z);
+            end
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
+end);
+
 KLSection:NewButton("Glitch", "", function()
 if (_G.CToggle == false) then
     spawn(function()
@@ -2474,3 +2508,4 @@ TpVoid.Transparency = 0.8
 TpVoid.Position = Vector3.new(10657.6113, 1434.63904, 552.198975, 0.256518424, 0.905121565, 0.339047521, -0.0115446523, -0.347890735, 0.937463999, 0.96647042, -0.244390965, -0.078791067)
 TpVoid.Size = Vector3.new(250,5,250)
 
+game.Lighting.ClockTime = 12
