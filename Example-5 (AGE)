@@ -1,3 +1,8 @@
+while wait(15) do
+game.Lighting.ClockTime = 12
+end
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
 
 
@@ -8,6 +13,10 @@ local Window = Library.CreateLib("Wizard.Lua Private", "GrapeTheme");
 
 local farmTab = Window:NewTab("Farm");
 local farmSection = farmTab:NewSection("Farm");
+
+local AHMTab = Window:NewTab("Target Farm (BETA) ");
+local AHMSection = AHMTab:NewSection("Player 1");
+local AHTSection = AHMTab:NewSection("Player 2");
 
 local MTab = Window:NewTab("Target");
 local MSection = MTab:NewSection("Target");
@@ -27,6 +36,7 @@ local VSection = VTab:NewSection("Crash");
 local KGTab = Window:NewTab("Misc");
 local KGSection = KGTab:NewSection("Map");
 local KLSection = KGTab:NewSection("Telekinesis");
+local KLASection = KGTab:NewSection("Perks");
 local KCSection = KGTab:NewSection("Server");
 
 
@@ -122,6 +132,14 @@ TSection:NewToggle("Teleport Player", "", function(state)
     _G.bring = false;
   end
 end);
+
+
+
+TSection:NewButton("Farm Place", "Kürdistan", function()
+local a = game.Players.LocalPlayer.Character.HumanoidRootPart
+a.CFrame = CFrame.new(10657.6113, 1434.63904, 552.198975, 0.256518424, 0.905121565, 0.339047521, -0.0115446523, -0.347890735, 0.937463999, 0.96647042, -0.244390965, -0.078791067)
+end);
+
 TSection:NewButton("Teleport", "", function()
 	getNearPlayer(99);
   if (_G.selectedstat == "Bar") then
@@ -519,6 +537,102 @@ TSection:NewButton("Teleport", "", function()
   plrlist = {};
   
 end);
+
+
+GetList();
+local slcplr = AHMSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
+	spawn(function()
+	  _G.sex = currentOption;
+	end);
+end);
+AHMSection:NewButton("Refresh Dropdown", "", function()
+  spawn(function()
+    GetList();
+    slcplr:Refresh(dropdown);
+  end);
+end);
+
+AHMSection:NewToggle("Start", "", function(state)
+  getgenv().startfarm = state
+if state then
+    getgenv().loopgoto = true;
+    local varX = player.Character.HumanoidRootPart.Position['X'];
+    local varY = player.Character.HumanoidRootPart.Position['Y'];
+    local varZ = player.Character.HumanoidRootPart.Position['Z'];
+    wait();
+    local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    local pos = p1.CFrame;
+    getgenv().breakv = true;
+    spawn(function()
+		  while breakv do
+		    wait();
+		    breakvelocity();
+		  end
+    end);
+    while loopgoto do
+      task.wait();
+      spawn(function()
+			  pcall(function()
+			    for i, v in pairs(game.Workspace:GetChildren()) do
+			      if ((v.Name == _G.sex) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
+			        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3);
+			      end
+			    end
+			  end);
+      end);
+      spawn(function()
+        if (loopgoto == false) then
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
+        end
+      end);
+    end
+  else
+    spawn(function()
+      getgenv().breakv = false;
+      wait();
+      getgenv().loopgoto = false;
+      wait();
+      getgenv().loopgoto = true;
+      breakvelocity();
+    end);
+  end
+end);
+
+game:GetService("RunService").Stepped:connect(function()
+  if getgenv().startfarm == true then
+    game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+   game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1); 
+end
+end)
+
+AHTSection:NewToggle("Start", "", function(state)
+getgenv().teleport = state
+end);
+
+game:GetService("RunService").Stepped:connect(function()
+  if getgenv().teleport == true then
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10645, 1440, 560)
+  end
+end)
+
 QSection:NewToggle("Rapid Punch", "", function(state)
 	if state then
 		getgenv().rapid = true;
@@ -2193,6 +2307,7 @@ end);
 
 
 
+
 KLSection:NewButton("Bring Motel", "", function()
 if (_G.CToggle == false) then
     spawn(function()
@@ -2251,7 +2366,62 @@ if (_G.CToggle == false) then
   end
 end);
 
+KLSection:NewButton("Glitch", "", function()
+if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              while wait() do
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(9e9, 9e9, 9e9);
+            end
+            end
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
+end);
 
+KLASection:NewToggle("Fake Godmode (Use With Anti Crash)", "", function(state)
+getgenv().godmode = state
+end);
+
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+if getgenv().godmode == true then
+local args = {
+    [1] = true
+}
+
+game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(unpack(args))
+end
+end)
+
+
+KLASection:NewButton("Shield", " ", function()
+  local args = {
+    [1] = true
+}
+
+game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(unpack(args))
+end)
 
 
 KCSection:NewButton("ServerHop", " ", function()
@@ -2301,3 +2471,13 @@ end)
 GSection:NewButton("Cyilindrical", "5758092", function()
 loadstring(game:HttpGet('https://github.com/bifungiji/the-scripter/raw/main/Finger'))()
 end);
+
+---26934.8105, 91853.5703, -93800.6328, 0.868557453, 0.320508152, 0.377998024, 4.75456936e-08, 0.762725472, -0.646722376, -0.495588511, 0.561715543, 0.662470877
+
+local TpVoid = Instance.new("Part", game.Workspace)
+TpVoid.Anchored = true
+TpVoid.Name = "ahhh"
+TpVoid.Transparency = 0.8
+TpVoid.Position = Vector3.new(10657.6113, 1434.63904, 552.198975, 0.256518424, 0.905121565, 0.339047521, -0.0115446523, -0.347890735, 0.937463999, 0.96647042, -0.244390965, -0.078791067)
+TpVoid.Size = Vector3.new(250,5,250)
+
