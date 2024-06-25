@@ -1,3 +1,38 @@
+local mod = {
+ 147548657,
+ 1111188468,
+ 59121896,
+  11073505,
+ 237922,
+  30929052,
+  83051521,
+  1311715825,
+  9754162,
+  381012618,
+  
+  
+}
+
+for l, c in pairs(game.Players:GetChildren()) do
+for i, v in pairs(mod) do
+if c.UserId == v then
+Print("Mod Dedected")
+end
+end
+end
+game.Players.PlayerAdded:Connect(function(plr)
+for i, v in pairs(mod) do
+if plr.UserId == v then
+game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "Warn";
+                Text = "Moderator Joined";
+            })
+end
+end
+end)
+
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-4%20(ESP)"))()
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-7%20(Modifed%20Kavo)"))();
@@ -532,64 +567,17 @@ TSection:NewButton("Teleport", "", function()
 end);
 
 
-GetList();
-local slcplr = AHMSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
-	spawn(function()
-	  _G.sex = currentOption;
-	end);
-end);
-AHMSection:NewButton("Refresh Dropdown", "", function()
-  spawn(function()
-    GetList();
-    slcplr:Refresh(dropdown);
-  end);
-end);
+
 
 AHMSection:NewToggle("Start", "", function(state)
   getgenv().startfarm = state
-if state then
-    getgenv().loopgoto = true;
-    local varX = player.Character.HumanoidRootPart.Position['X'];
-    local varY = player.Character.HumanoidRootPart.Position['Y'];
-    local varZ = player.Character.HumanoidRootPart.Position['Z'];
-    wait();
-    local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
-    local pos = p1.CFrame;
-    getgenv().breakv = true;
-    spawn(function()
-		  while breakv do
-		    wait();
-		    breakvelocity();
-		  end
-    end);
-    while loopgoto do
-      task.wait();
-      spawn(function()
-			  pcall(function()
-			    for i, v in pairs(game.Workspace:GetChildren()) do
-			      if ((v.Name == _G.sex) and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
-			        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3);
-			      end
-			    end
-			  end);
-      end);
-      spawn(function()
-        if (loopgoto == false) then
-          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(varX, varY, varZ);
-        end
-      end);
-    end
-  else
-    spawn(function()
-      getgenv().breakv = false;
-      wait();
-      getgenv().loopgoto = false;
-      wait();
-      getgenv().loopgoto = true;
-      breakvelocity();
-    end);
-  end
 end);
+
+game:GetService("RunService").Stepped:connect(function()
+  if getgenv().startfarm == true then
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10645, 1440, 560)
+  end
+end)
 
 game:GetService("RunService").Stepped:connect(function()
   if getgenv().startfarm == true then
@@ -2408,7 +2396,7 @@ if (_G.CToggle == false) then
               
             else
               while wait() do
-              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(9e9, 9e9, 9e9);
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(9e9, 0/0, math.huge);
             end
             end
           end
@@ -2426,6 +2414,15 @@ end);
 
 KLASection:NewToggle("Fake Godmode (Use With Anti Crash)", "", function(state)
 getgenv().godmode = state
+  if state then
+    print("Enabled")
+  else
+    local aaa = {
+    [1] = false
+}
+
+game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(unpack(aaa))
+  end
 end);
 
 
@@ -2437,6 +2434,7 @@ local args = {
     [1] = true
 }
 
+game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(unpack(args))
 game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(unpack(args))
 end
 end)
@@ -2508,4 +2506,11 @@ TpVoid.Transparency = 0.8
 TpVoid.Position = Vector3.new(10657.6113, 1434.63904, 552.198975, 0.256518424, 0.905121565, 0.339047521, -0.0115446523, -0.347890735, 0.937463999, 0.96647042, -0.244390965, -0.078791067)
 TpVoid.Size = Vector3.new(250,5,250)
 
+getgenv().DAY = true
+
+
+game:GetService("RunService").Stepped:connect(function()
+  if getgenv().DAY == true then
 game.Lighting.ClockTime = 12
+  end
+end)
