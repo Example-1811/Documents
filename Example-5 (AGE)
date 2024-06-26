@@ -36,7 +36,7 @@ end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-4%20(ESP)"))()
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-7%20(Modifed%20Kavo)"))();
-local Window = Library.CreateLib("Wizard.Lua Private", "GrapeTheme");
+local Window = Library.CreateLib("Wizard.Lua        Made By オーマ ビッグ フォーティ              || Private version ||", "GrapeTheme");
 
 
 local farmTab = Window:NewTab("Farm");
@@ -582,107 +582,18 @@ end)
 
 game:GetService("RunService").Stepped:connect(function()
   if getgenv().startfarm == true then
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
-end
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
+					wait(11)
+  end
 end)
 
 AHTSection:NewToggle("Start", "", function(state)
@@ -727,6 +638,31 @@ QSection:NewToggle("Rapid Punch", "", function(state)
 		end);
 	end
 end);
+
+QSection:NewToggle("Rapid Punch Legit", "", function(state)
+	if state then
+		getgenv().rapid = true;
+		local UserInputService = game:GetService("UserInputService");
+		local function onInputEnded(inputObject, gameProcessedEvent)
+			if gameProcessedEvent then
+				return;
+			end
+			if (rapid == true) then
+				if (inputObject.UserInputType == Enum.UserInputType.MouseButton1) then
+					spawn(function()
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+					end);
+				end
+			end
+		end
+		UserInputService.InputEnded:Connect(onInputEnded);
+	else
+		spawn(function()
+			getgenv().rapid = false;
+		end);
+	end
+end);
+
 QSection:NewToggle("Rapid Heavy Punch", "", function(state)
 	if state then
 		getgenv().Hrapid = true;
@@ -1043,6 +979,21 @@ end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
 end);
+
+QSection:NewButton("Rapid Punch legit (Mobile)", "", function()
+  getgenv().keytoclick = "RapidPunch"
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = keytoclick
+tool.Activated:connect(function()
+  spawn(function()
+    game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+  end);
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+wait(0.2)
+end);
+
 QSection:NewButton("Heavy Rapid Punch (Mobile)", "", function()
   getgenv().keytoclick = "Heavy"
 tool = Instance.new("Tool")
@@ -2399,6 +2350,43 @@ if (_G.CToggle == false) then
   end
 end);
 
+
+                
+                local c = math.cos(1 * 10);
+                local s = math.sin(1 * 10);
+           --     local position = (game.PlayersLocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(60 * c, 6, 60 * s)).Position;
+             --   movePlayerWithTelekinesis(position, v.Name);
+
+            
+KLSection:NewButton("Orbit", "", function()
+if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + CFrame.new(60 * c, 6, 60 * s)
+            end
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
+end);
+
 KLSection:NewButton("Bring Middle", "", function()
 if (_G.CToggle == false) then
     spawn(function()
@@ -2461,6 +2449,8 @@ if (_G.CToggle == false) then
     end);
   end
 end);
+
+
 
 KLSection:NewButton("Glitch", "", function()
 spawn(function()
