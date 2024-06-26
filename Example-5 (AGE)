@@ -64,6 +64,7 @@ local VSection = VTab:NewSection("Crash");
 local KGTab = Window:NewTab("Misc");
 local KGSection = KGTab:NewSection("Map");
 local KLSection = KGTab:NewSection("Telekinesis");
+local KSSSection = KGTab:NewSection("Auto Stats");
 local KLASection = KGTab:NewSection("Perks");
 local KCSection = KGTab:NewSection("Server");
 
@@ -581,26 +582,106 @@ end)
 
 game:GetService("RunService").Stepped:connect(function()
   if getgenv().startfarm == true then
-    game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-   game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1); 
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
 end
 end)
 
@@ -2382,34 +2463,70 @@ if (_G.CToggle == false) then
 end);
 
 KLSection:NewButton("Glitch", "", function()
-if (_G.CToggle == false) then
-    spawn(function()
-		  getNearPlayer(99);
-      wait();
-      _G.CToggle = true;
-      getgenv().CarryP = true;
-      while CarryP do
-        wait();
+spawn(function()
+	  getNearPlayer(99);
+    for i, v in pairs(plrlist) do
+      if (v == player) then
+			  
+			else
         spawn(function()
-          for i, v in pairs(plrlist) do
-            if (v == player) then
-              
-            else
-              while wait() do
-              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(9e9, 0/0, math.huge);
-            end
-            end
-          end
+				       v.Humanoid.JumpPower = 2500;
+        v.Humanoid.WalkSpeed = 2000;
+        v.Humanoid.PlatformStand = false;
+        v.HumanoidRootPart.telekinesisPosition:Destroy();
+        v.HumanoidRootPart.telekinesisGyro:Destroy();
+          plrlist = {};wait();
+          spawn(function()
+            Print('$hit Talker İs god')
+          end);
         end);
       end
-    end);
-  else
-    spawn(function()
-      _G.CToggle = false;
-      plrlist = {};
-      getgenv().CarryP = false;
-    end);
-  end
+    end
+  end);
+end);
+
+
+KSSSection:NewDropdown("AutoStats", "", {"vitality","healing","strength","energy","flight","speed","climbing","swinging","fireball","frost","lightning","power","telekinesis","shield","laserVision","metalSkin"}, function(currentOption)
+	selectedstat = currentOption;
+end);
+KSSSection:NewToggle("Toggle AutoStats", "", function(state)
+	if state then
+		getgenv().AutoStats = true;
+		while AutoStats do
+			wait();
+			spawn(function()
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+			game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+			  game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+			  game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+			  game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+				game:GetService("ReplicatedStorage").Events.UpgradeAbility:InvokeServer(selectedstat);
+			end);
+		end
+	else
+		spawn(function()
+			getgenv().AutoStats = false;
+		end);
+	end
 end);
 
 KLASection:NewToggle("Fake Godmode (Use With Anti Crash)", "", function(state)
