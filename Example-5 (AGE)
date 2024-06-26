@@ -166,7 +166,7 @@ end);
 
 TSection:NewButton("Farm Place", "Kürdistan", function()
 local a = game.Players.LocalPlayer.Character.HumanoidRootPart
-a.CFrame = CFrame.new(10657.6113, 1434.63904, 552.198975, 0.256518424, 0.905121565, 0.339047521, -0.0115446523, -0.347890735, 0.937463999, 0.96647042, -0.244390965, -0.078791067)
+a.CFrame = CFrame.new(10645, 1440, 560)
 end);
 
 TSection:NewButton("Teleport", "", function()
@@ -568,31 +568,50 @@ TSection:NewButton("Teleport", "", function()
 end);
 
 
-
+GetList();
+local slcplr = AHMSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
+	spawn(function()
+	  _G.Hoe = currentOption;
+	end);
+end);
+AHMSection:NewButton("Refresh Dropdown", "", function()
+  spawn(function()
+    GetList();
+    slcplr:Refresh(dropdown);
+  end);
+end);
 
 AHMSection:NewToggle("Start", "", function(state)
   getgenv().startfarm = state
 end);
 
-game:GetService("RunService").Stepped:connect(function()
+--[[game:GetService("RunService").Stepped:connect(function()
   if getgenv().startfarm == true then
-  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10645, 1440, 560)
+  spawn(function()
+	  local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
+    p1.CFrame = game.Players[_G.Hoe].Character.HumanoidRootPart.CFrame;
+    breakvelocity();
+  end);
   end
 end)
+]]
+local lp = game.Players.LocalPlayer
+
+  
+  
 
 game:GetService("RunService").Stepped:connect(function()
   if getgenv().startfarm == true then
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-						game:GetService("ReplicatedStorage").Events.Punch:FireServer(0, 0.1, 1);
-					wait(11)
+    getgenv().farming = true
+    if getgenv().farming == true and game.Players[_G.Hoe].Character.Humanoid.Health > 1 then
+    lp.Character.HumanoidRootPart.CFrame = Game.Players[_G.Hoe].Character.HumanoidRootPart.CFrame
+    game:GetService("ReplicatedStorage").Events.Punch:FireServer(0.4, 0.01, 1);
+    else
+      lp.Character.HumanoidRootPart.CFrame = CFrame.new(10645, 1440, 560)
+					getgenv().farming = false
+      wait(20)
+      getgenv().farming = true
+  end
   end
 end)
 
@@ -1629,6 +1648,7 @@ MSection:NewButton("Refresh Dropdown", "", function()
     slcplr:Refresh(dropdown);
   end);
 end);
+
 MSection:NewButton("Teleport To Player", "", function()
   spawn(function()
 	  local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart;
@@ -2317,8 +2337,50 @@ farmSection:NewToggle("Thug Farm", "", function(state)
 	end
 end);
 
+GetList();
+local slcplr = KLSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
+	spawn(function()
+	  _G.target = currentOption;
+	end);
+end);
+KLSection:NewButton("Refresh Dropdown", "", function()
+  spawn(function()
+    GetList();
+    slcplr:Refresh(dropdown);
+  end);
+end);
 
-
+KLSection:NewButton("Bring To Target", "", function()
+if (_G.CToggle == false) then
+    spawn(function()
+		  getNearPlayer(99);
+      wait();
+      _G.CToggle = true;
+      getgenv().CarryP = true;
+      while CarryP do
+        wait();
+        spawn(function()
+          for i, v in pairs(plrlist) do
+            if (v == player) then
+              
+            else
+              Xt = game.Players[_G.target].Character.HumanoidRootPart.Position['X'];
+              Yt = game.Players[_G.target].Character.HumanoidRootPart.Position['Y'];
+              Zt = game.Players[_G.target].Character.HumanoidRootPart.Position['Z'];
+              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = Vector3.new(Xt, Yt + 5, Zt + 5);
+            end
+          end
+        end);
+      end
+    end);
+  else
+    spawn(function()
+      _G.CToggle = false;
+      plrlist = {};
+      getgenv().CarryP = false;
+    end);
+  end
+end);
 
 
 KLSection:NewButton("Bring Motel", "", function()
@@ -2352,40 +2414,11 @@ end);
 
 
                 
-                local c = math.cos(1 * 10);
-                local s = math.sin(1 * 10);
+                
            --     local position = (game.PlayersLocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(60 * c, 6, 60 * s)).Position;
              --   movePlayerWithTelekinesis(position, v.Name);
 
             
-KLSection:NewButton("Orbit", "", function()
-if (_G.CToggle == false) then
-    spawn(function()
-		  getNearPlayer(99);
-      wait();
-      _G.CToggle = true;
-      getgenv().CarryP = true;
-      while CarryP do
-        wait();
-        spawn(function()
-          for i, v in pairs(plrlist) do
-            if (v == player) then
-              
-            else
-              game:GetService("Workspace")[v.Name].HumanoidRootPart.telekinesisPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + CFrame.new(60 * c, 6, 60 * s)
-            end
-          end
-        end);
-      end
-    end);
-  else
-    spawn(function()
-      _G.CToggle = false;
-      plrlist = {};
-      getgenv().CarryP = false;
-    end);
-  end
-end);
 
 KLSection:NewButton("Bring Middle", "", function()
 if (_G.CToggle == false) then
