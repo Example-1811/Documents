@@ -2654,3 +2654,16 @@ game:GetService("RunService").Stepped:connect(function()
 game.Lighting.ClockTime = 12
   end
 end)
+
+
+    
+
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.level.Text = "35000"
+game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.title.Text = "VİZARD"  
+game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.title.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.level.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+end)
