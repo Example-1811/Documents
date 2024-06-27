@@ -11,7 +11,7 @@ end
 
 --
 
-if Name == "YourNameIsHereXIIIII" or Name == "harbici40" or Name == "wksbwbwhwj" or Name == "PASHA_3448" or Name == "detpays11" or Name == "nemesisx810" or Name == "pabloemilio7834" or Name == "kaan34442q" or Name == "skabladx34" or Name == "Bxnjhhhh" then
+if Name == "YourNameIsHereXIIIII" or Name == "harbici40" or Name == "wksbwbwhwj" or Name == "PASHA_3448" or Name == "detpays11" or Name == "detpays01" or Name == "nemesisx810" or Name == "pabloemilio7834" or Name == "kaan34442q" or Name == "skabladx34" or Name == "Bxnjhhhh" then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-5%20(AGE)"))()
 else
 print("Not Whitelisted")
