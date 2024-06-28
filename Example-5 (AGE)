@@ -66,6 +66,7 @@ local KGSection = KGTab:NewSection("Map");
 local KLSection = KGTab:NewSection("Telekinesis");
 local KSSSection = KGTab:NewSection("Auto Stats");
 local KLASection = KGTab:NewSection("Perks");
+local TXTSection = KGTab:NewSection("Fake Stats");
 local KCSection = KGTab:NewSection("Server");
 
 
@@ -2588,6 +2589,47 @@ KLASection:NewButton("Shield", " ", function()
 game:GetService("ReplicatedStorage").Events.ToggleBlocking:FireServer(unpack(args))
 end)
 
+
+GetList();
+local slcplr = TXTSection:NewDropdown("Select Player", "", dropdown, function(currentOption)
+	spawn(function()
+	  _G.nga = currentOption;
+	end);
+end);
+TXTSection:NewButton("Refresh Dropdown", "", function()
+  spawn(function()
+    GetList();
+    slcplr:Refresh(dropdown);
+  end);
+end);
+
+
+
+TXTSection:NewTextBox("Fake Level", "", function(txt)
+	while wait(1) do 
+game.Players[_G.nga].Character.HumanoidRootPart.titleGui.Frame.level.Text = txt
+	end
+end)
+
+TXTSection:NewTextBox("Fake Role", "", function(txt)
+  while wait(1) do
+    game.Players[_G.nga].Character.HumanoidRootPart.titleGui.Frame.title.Text = txt
+  end 
+end)
+
+
+
+TXTSection:NewToggle("Rainbow Text", "", function(state)
+getgenv().rainbowtext = state
+end);
+
+
+game:GetService("RunService").Stepped:connect(function()
+ if getgenv().rainbowtext == true then  
+game.Players[_G.nga].Character.HumanoidRootPart.titleGui.Frame.title.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
+game.Players[_G.nga].Character.HumanoidRootPart.titleGui.Frame.level.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+end
+end)
 
 KCSection:NewButton("ServerHop", " ", function()
     local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
