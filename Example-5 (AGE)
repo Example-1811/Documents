@@ -16,7 +16,7 @@ local mod = {
 for l, c in pairs(game.Players:GetChildren()) do
 for i, v in pairs(mod) do
 if c.UserId == v then
-Print("Mod Dedected")
+print("Mod Dedected")
 end
 end
 end
