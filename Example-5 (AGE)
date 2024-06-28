@@ -2705,7 +2705,48 @@ end)
 
 game:GetService("RunService").Stepped:connect(function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.level.Text = "35000"
-game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.title.Text = "VİZARD"  
+game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.title.Text = "WİZARD"  
 game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.title.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.titleGui.Frame.level.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
 end)
+
+
+
+
+
+
+
+
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+if game.Players.LocalPlayer.PlayerGui.uiMain.loadout.ability4.Visible == true then
+game.Players.LocalPlayer.PlayerGui.uiMain.loadout.ability4.tileOutline.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
+end
+end)
+
+
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.PlayerGui.uiMain.loadout.ability3.tileOutline.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
+end)
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.PlayerGui.uiMain.loadout.ability2.tileOutline.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
+end)
+
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.PlayerGui.uiMain.loadout.ability1.tileOutline.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
+end)
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.PlayerGui.TouchGui.TouchControlFrame.JumpButton.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
+end)
+
