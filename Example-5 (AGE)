@@ -36,13 +36,13 @@ end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-4%20(ESP)"))()
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Wizard.Lua        Made By オーマ ビッグ フォーティ              || Private version ||", "GrapeTheme");
+local Window = Library.CreateLib("Wizard.Lua        Made By DEAD WİZARD              || Private version ||", "GrapeTheme");
 
 
 local farmTab = Window:NewTab("Farm");
 local farmSection = farmTab:NewSection("Farm");
 
-local AHMTab = Window:NewTab("Target Farm");
+local AHMTab = Window:NewTab("Target Farm (BETA)");
 local AHMSection = AHMTab:NewSection("Player 1");
 local AHTSection = AHMTab:NewSection("Player 2");
 
@@ -50,7 +50,9 @@ local MTab = Window:NewTab("Target");
 local MSection = MTab:NewSection("Target");
 
 local QTab = Window:NewTab("Rapid Punch");
-local QSection = QTab:NewSection("Rapid Punch");
+local QSection = QTab:NewSection("PC");
+local MOBLSection = QTab:NewSection("MOBİLE");
+
 
 local AABBTab = Window:NewTab("Toggle's");
 local AABBSection = AABBTab:NewSection("Toggle's");
@@ -977,8 +979,12 @@ getRoot = function(char)
 	local rootPart = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso");
 	return rootPart;
 end;
-QSection:NewButton("Rapid Punch (Mobile)", "", function()
-  getgenv().keytoclick = "RapidPunch"
+
+
+
+MOBLSection:NewToggle("RAPİD PUNCH", "", function(state)
+if state then
+  getgenv().keytoclick = "A"
 tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = keytoclick
@@ -998,10 +1004,22 @@ tool.Activated:connect(function()
 end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
-end);
+  
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)      
+else
+  game.Players.LocalPlayer.Backpack.A:destroy()
+end
+end)
 
-QSection:NewButton("Rapid Punch legit (Mobile)", "", function()
-  getgenv().keytoclick = "RapidPunch"
+
+
+
+
+MOBLSection:NewToggle("LEGİT RAPİD PUNCH", "", function(state)
+if state then
+  getgenv().keytoclick = "B"
 tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = keytoclick
@@ -1012,10 +1030,21 @@ tool.Activated:connect(function()
 end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
-end);
+  
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)  
+else
+  game.Players.LocalPlayer.Backpack.B:destroy()
+end
+end)
 
-QSection:NewButton("Heavy Rapid Punch (Mobile)", "", function()
-  getgenv().keytoclick = "Heavy"
+
+
+
+MOBLSection:NewToggle("HEAVY RAPİD PUNCH", "", function(state)
+if state then
+  getgenv().keytoclick = "C"
 tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = keytoclick
@@ -1035,9 +1064,21 @@ tool.Activated:connect(function()
 end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
-end);  
-QSection:NewButton("Heavy Rapid Punch (Mobile)", "", function()
-  getgenv().keytoclick = "Super"
+  
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)    
+else
+  game.Players.LocalPlayer.Backpack.C:destroy()
+end
+end)
+
+
+
+
+MOBLSection:NewToggle("SUPER RAPİD PUNCH", "", function(state)
+if state then
+  getgenv().keytoclick = "D"
 tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = keytoclick
@@ -1153,9 +1194,21 @@ tool.Activated:connect(function()
 end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
-end);  
-QSection:NewButton("Super Heavy Rapid Punch (Mobile)", "", function()
-    getgenv().keytoclick = "Super Heavy"
+  
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)  
+else
+  game.Players.LocalPlayer.Backpack.D:destroy()
+end
+end)
+
+
+
+
+MOBLSection:NewToggle("SUPER HEAVY RAPİD PUNCH", "", function(state)
+if state then
+  getgenv().keytoclick = "E"
 tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = keytoclick
@@ -1271,10 +1324,14 @@ tool.Activated:connect(function()
 end)
 tool.Parent = game.Players.LocalPlayer.Backpack
 wait(0.2)
-end);
-
-
-
+  
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)  
+else
+  game.Players.LocalPlayer.Backpack.E:destroy()
+end
+end)
 
 
 AABBSection:NewToggle("Spawn Point", "", function(state)
@@ -2099,168 +2156,7 @@ farmSection:NewToggle("Orb Farm", "", function(state)
 		end);
 	end
 end);
-farmSection:NewToggle("Laser Civilian Farm", "", function(state)
-	if state then
-		getgenv().LaserC = true;
-		coroutine.resume(coroutine.create(function()
-			local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
-			local part = event:InvokeServer(true);
-			getgenv().LaserC = true;
-			while LaserC and part do
-				wait();
-				for i, v in pairs(game.Workspace:GetChildren()) do
-					if ((v.ClassName == "Model") and (v.Name == "Civilian") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
-						part.Position = v.HumanoidRootPart.Position;
-					end
-				end
-			end
-			event:InvokeServer(false);
-		end));
-	else
-		spawn(function()
-			getgenv().LaserC = false;
-		end);
-		breakvelocity();
-	end
-end);
-farmSection:NewToggle("Laser Police Farm", "", function(state)
-	if state then
-		getgenv().LaserV = true;
-		coroutine.resume(coroutine.create(function()
-			local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
-			local part = event:InvokeServer(true);
-			getgenv().LaserV = true;
-			while LaserV and part do
-				for i, v in pairs(game.Workspace:GetChildren()) do
-					if ((v.ClassName == "Model") and (v.Name == "Police") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
-						part.Position = v.HumanoidRootPart.Position;
-					end
-				end
-				wait();
-			end
-			event:InvokeServer(false);
-		end));
-	else
-		spawn(function()
-			getgenv().LaserV = false;
-		end);
-		breakvelocity();
-	end
-end);
-farmSection:NewToggle("Laser Thug Farm", "", function(state)
-	if state then
-		getgenv().LaserH = true;
-		coroutine.resume(coroutine.create(function()
-			local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
-			local part = event:InvokeServer(true);
-			getgenv().LaserH = true;
-			while LaserH and part do
-				wait();
-				for i, v in pairs(game.Workspace:GetChildren()) do
-					if ((v.ClassName == "Model") and (v.Name == "Thug") and v:FindFirstChild("Humanoid") and (v.Humanoid.Health > 0)) then
-						part.Position = v.HumanoidRootPart.Position;
-					end
-				end
-			end
-			event:InvokeServer(false);
-		end));
-	else
-		spawn(function()
-			getgenv().LaserH = false;
-		end);
-		breakvelocity();
-	end
-end);
-farmSection:NewToggle("Laser Civilian Farm (Sky)", "", function(state)
-        if state then       
-            orbCX = player.Character.HumanoidRootPart.Position.X orbCY = player.Character.HumanoidRootPart.Position.Y orbCZ = player.Character.HumanoidRootPart.Position.Z
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbCX,2500,orbCZ)
-            getgenv().LaserC = true
-            wait(0.2)
-            player.Character.HumanoidRootPart.Anchored = true
-            coroutine.resume(coroutine.create(
-              function()
-                local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
-                local part = event:InvokeServer(true);
-                getgenv().LaserC = true
-                while LaserC and part do     
-                  wait()  
-                    for i, v in pairs(game.Workspace:GetChildren()) do
-                        if v.ClassName == "Model" and v.Name == "Civilian" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                            part.Position = v.HumanoidRootPart.Position;
-                        end                
-                    end                            
-                end
-                event:InvokeServer(false);
-              end
-            ));      
-        else
-            player.Character.HumanoidRootPart.Anchored = false
-            spawn(function() getgenv().LaserC = false end) 
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbCX, orbCY, orbCZ)
-            breakvelocity()
-        end
-    end);
-	farmSection:NewToggle("Laser Police Farm(Sky)", "", function(state)
-        if state then        
-            orbVX = player.Character.HumanoidRootPart.Position.X orbVY = player.Character.HumanoidRootPart.Position.Y orbVZ = player.Character.HumanoidRootPart.Position.Z
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbVX,2500,orbVZ)
-            getgenv().LaserV = true
-            wait(0.2)
-            player.Character.HumanoidRootPart.Anchored = true
-            coroutine.resume(coroutine.create(
-              function()
-                local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
-                local part = event:InvokeServer(true);
-                getgenv().LaserV = true
-                while LaserV and part do     
-                        for i, v in pairs(game.Workspace:GetChildren()) do
-                            if v.ClassName == "Model" and v.Name == "Police" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                part.Position = v.HumanoidRootPart.Position;
-                            end                
-                        end
-                  wait()            
-                end
-                event:InvokeServer(false);
-              end
-            ));      
-        else
-            player.Character.HumanoidRootPart.Anchored = false
-            spawn(function() getgenv().LaserV = false end) 
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbVX, orbVY, orbVZ)
-            breakvelocity()
-        end
-    end);
-	farmSection:NewToggle("Laser Thug Farm(Sky)", "", function(state)
-        if state then       
-            orbHX = player.Character.HumanoidRootPart.Position.X orbHY = player.Character.HumanoidRootPart.Position.Y orbHZ = player.Character.HumanoidRootPart.Position.Z
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbHX,2500,orbHZ)
-            getgenv().LaserH = true
-            wait(0.2)
-            player.Character.HumanoidRootPart.Anchored = true
-            coroutine.resume(coroutine.create(
-              function()
-                local event = game:GetService("ReplicatedStorage").Events.ToggleLaserVision;
-                local part = event:InvokeServer(true);
-                getgenv().LaserH = true
-                while LaserH and part do     
-                  wait()  
-                    for i, v in pairs(game.Workspace:GetChildren()) do
-                        if v.ClassName == "Model" and v.Name == "Thug" and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                            part.Position = v.HumanoidRootPart.Position;
-                        end                
-                    end                            
-                end
-                event:InvokeServer(false);
-              end
-            ));      
-        else
-            player.Character.HumanoidRootPart.Anchored = false
-            spawn(function() getgenv().LaserH = false  end) 
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(orbHX, orbHY, orbHZ)
-            breakvelocity()
-        end
-    end);
+
 farmSection:NewToggle("Civilian Farm", "", function(state)
 	if state then
 		CivilianX = player.Character.HumanoidRootPart.Position['X'];
@@ -2486,7 +2382,7 @@ end);
 
 
 
-KLSection:NewButton("Glitch", "", function()
+KLSection:NewButton("Give Power", "", function()
 spawn(function()
 	  getNearPlayer(99);
     for i, v in pairs(plrlist) do
@@ -2494,14 +2390,14 @@ spawn(function()
 			  
 			else
         spawn(function()
-				       v.Humanoid.JumpPower = 2500;
-        v.Humanoid.WalkSpeed = 2000;
+				       v.Humanoid.JumpPower = 1000;
+        v.Humanoid.WalkSpeed = 450;
         v.Humanoid.PlatformStand = false;
         v.HumanoidRootPart.telekinesisPosition:Destroy();
         v.HumanoidRootPart.telekinesisGyro:Destroy();
           plrlist = {};wait();
           spawn(function()
-            Print('$hit Talker İs god')
+            print('$hit Talker İs god')
           end);
         end);
       end
@@ -2749,4 +2645,3 @@ end)
 game:GetService("RunService").Stepped:connect(function()
 game.Players.LocalPlayer.PlayerGui.TouchGui.TouchControlFrame.JumpButton.ImageColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)        
 end)
-
