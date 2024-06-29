@@ -2611,7 +2611,13 @@ end)
 
 
 
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.PlayerGui.uiMain.buildVersion.Text = ".gg/XWThU8zWNd"
+end)
 
+game:GetService("RunService").Stepped:connect(function()
+game.Players.LocalPlayer.PlayerGui.uiMain.buildVersion.TextColor3 = Color3.fromHSV(tick() % 6 / 6, 1, 1)
+end)
 
 
 
