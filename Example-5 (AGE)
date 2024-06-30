@@ -36,7 +36,7 @@ end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-4%20(ESP)"))()
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Wizard.Lua        Made By DEAD WİZARD              || Private version ||", "Serpent");
+local Window = Library.CreateLib("Wizard.Lua        Made By DEAD WİZARD              || Public version ||", "Serpent");
 
 
 local farmTab = Window:NewTab("Farm");
