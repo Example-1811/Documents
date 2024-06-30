@@ -50,17 +50,17 @@ end
 
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
-    Background = Color3.fromRGB(0, 0, 0),
-    Header = Color3.fromRGB(255, 0, 255),
-    TextColor = Color3.fromRGB(255,0,255),
+    Background = Color3.fromRGB(36, 37, 43),
+    Header = Color3.fromRGB(28, 29, 34),
+    TextColor = Color3.fromRGB(255,255,255),
     ElementColor = Color3.fromRGB(32, 32, 38)
 }
 local themeStyles = {
     DarkTheme = {
         SchemeColor = Color3.fromRGB(64, 64, 64),
         Background = Color3.fromRGB(0, 0, 0),
-        Header = Color3.fromHSV(tick() % 6 / 6, 1, 1)
-        TextColor = Color3.fromHSV(tick() % 6 / 6, 1, 1),
+        Header = Color3.fromRGB(0, 0, 0),
+        TextColor = Color3.fromRGB(255,255,255),
         ElementColor = Color3.fromRGB(20, 20, 20)
     },
     LightTheme = {
@@ -72,10 +72,10 @@ local themeStyles = {
     },
     BloodTheme = {
         SchemeColor = Color3.fromRGB(227, 27, 27),
-        Background = Color3.fromRGB(10, 10, 10),
+        Background = Color3.fromRGB(0, 0, 0),
         Header = Color3.fromRGB(5, 5, 5),
-        TextColor = Color3.fromRGB(255,255,255),
-        ElementColor = Color3.fromRGB(20, 20, 20)
+        TextColor = Color3.fromRGB(75, 161, 35),
+        ElementColor = Color3.fromRGB(0, 0, 0)
     },
     GrapeTheme = {
         SchemeColor = Color3.fromRGB(166, 71, 214),
