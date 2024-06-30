@@ -36,7 +36,7 @@ end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Pixeluted/adoniscries/main/Source.lua",true))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-4%20(ESP)"))()
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Wizard.Lua        Made By DEAD WİZARD              || Private version ||", "GrapeTheme");
+local Window = Library.CreateLib("Wizard.Lua        Made By DEAD WİZARD              || Private version ||", "Serpent");
 
 
 local farmTab = Window:NewTab("Farm");
@@ -77,7 +77,8 @@ local TTab = Window:NewTab("Locations");
 local TSection = TTab:NewSection("Locations");
 
 local GTab = Window:NewTab("Settings");
-local GSection = GTab:NewSection("Settings");
+local GSection = GTab:NewSection("Keybinds");
+local GORSection = GTab:NewSection("Scripts");
 
 _G.CToggle = false;
 _G.metalskin = false;
@@ -1379,7 +1380,7 @@ KGSection:NewButton("Destroy Safezone & Parts", "", function()
   game:GetService("Workspace").SafeZones.Barrier:Destroy();
 end);
 
-AABBSection:NewToggle("Hide Title Gui", "", function(state)
+AABBSection:NewToggle("Hide Stat Gui", "", function(state)
   if state then
     getgenv().hide = true;
     while hide do
@@ -1402,7 +1403,7 @@ AABBSection:NewToggle("Auto-Grab", "", function(state)
 	if state then
 		getgenv().teleaura = true;
 		while teleaura do
-			wait(1);
+			wait(0.4);
 			spawn(function()
 				local LookVector = game.Workspace.Camera.CFrame.LookVector;
 				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(LookVector, true);
@@ -1417,11 +1418,14 @@ AABBSection:NewToggle("Auto-Grab", "", function(state)
 end);
 
 
+
+
+
 AABBSection:NewToggle("Tele-Fling", "", function(state)
 	if state then
 		getgenv().telesauras = true;
 		while telesauras do
-			wait(1);
+			wait(0.4);
 			spawn(function()
 				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(999999, 999999, 999999), true);
 				game:GetService("ReplicatedStorage").Events.ToggleTelekinesis:InvokeServer(Vector3.new(999999, 999999, 999999), false);
@@ -2346,7 +2350,8 @@ if (_G.CToggle == false) then
   end
 end);
 
-hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+
 
 
 local mouse = game.Players.LocalPlayer:GetMouse()
@@ -2552,26 +2557,26 @@ KCSection:NewButton("Joined Players Notify", "", function()
 end);
 
 
-GSection:NewButton("Mobile Keyboard ", "", function()
+GORSection:NewButton("Mobile Keyboard ", "", function()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
 end);
 
-GSection:NewButton("Custom Keyboard ", "", function()
+GORSection:NewButton("Custom Keyboard ", "", function()
   loadstring(game:HttpGet("https://gist.githubusercontent.com/RedZenXYZ/4d80bfd70ee27000660e4bfa7509c667/raw/da903c570249ab3c0c1a74f3467260972c3d87e6/KeyBoard%2520From%2520Ohio%2520Fr%2520Fr"))()
 end);
 
-GSection:NewButton("Chat Bypass", "", function()
+GORSection:NewButton("Chat Bypass", "", function()
   loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-NEW-RBCByp-The-BEST-Chat-Bypasser-8299"))()
 end);
 
-GSection:NewButton("Nameless Admin", "", function()
+GORSection:NewButton("Nameless Admin", "", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source'))()
 end);
 
-GSection:NewButton("infinite Yield", " ", function()
+GORSection:NewButton("infinite Yield", " ", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
-GSection:NewButton("Cyilindrical", "5758092", function()
+GORSection:NewButton("Cyilindrical", "5758092", function()
 loadstring(game:HttpGet('https://github.com/bifungiji/the-scripter/raw/main/Finger'))()
 end);
 
@@ -2612,7 +2617,7 @@ end)
 
 
 game:GetService("RunService").Stepped:connect(function()
-game.Players.LocalPlayer.PlayerGui.uiMain.buildVersion.Text = "Join .gg/tbfectwaDk"
+game.Players.LocalPlayer.PlayerGui.uiMain.buildVersion.Text = "Join for Scripts  .gg/tbfectwaDk"
 end)
 
 game:GetService("RunService").Stepped:connect(function()
