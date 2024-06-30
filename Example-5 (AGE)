@@ -2612,7 +2612,7 @@ end)
 
 
 game:GetService("RunService").Stepped:connect(function()
-game.Players.LocalPlayer.PlayerGui.uiMain.buildVersion.Text = ".gg/XWThU8zWNd"
+game.Players.LocalPlayer.PlayerGui.uiMain.buildVersion.Text = "Join .gg/tbfectwaDk"
 end)
 
 game:GetService("RunService").Stepped:connect(function()
