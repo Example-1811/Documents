@@ -73,7 +73,7 @@ local themeStyles = {
     BloodTheme = {
         SchemeColor = Color3.fromRGB(227, 27, 27),
         Background = Color3.fromRGB(0, 0, 0),
-        Header = Color3.fromRGB(5, 5, 5),
+        Header = Color3.fromRGB(75, 161, 35),
         TextColor = Color3.fromRGB(75, 161, 35),
         ElementColor = Color3.fromRGB(0, 0, 0)
     },
