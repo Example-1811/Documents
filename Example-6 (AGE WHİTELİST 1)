@@ -1,40 +1,15 @@
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 
 
-local Name = game.Players.LocalPlayer.Name
 
-if getgenv().Whitelistkey == "accdedect" then
-print("Whitelisted")
-else
-print("Key Error")
-game.Players.LocalPlayer:kick("Key Error")
-return
-end
+print("MADE BY DEAD WİZARD")
 
---
 
-if Name == "detpays22" or Name == "YourNameIsHereXIIIII" or Name == "harbici40" or Name == "wksbwbwhwj" or Name == "PASHA_3448" or Name == "detpays11" or Name == "detpays01" or Name == "nemesisx810" or Name == "pabloemilio7834" or Name == "kaan34442q" or Name == "skabladx34" or Name == "Bxnjhhhh" then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-5%20(AGE)"))()
-else
-print("Not Whitelisted")
-print("10")
-wait(1)
-print("9")
-wait(1)
-print("8")
-wait(1)
-print("7")
-wait(1)
-print("6")
-wait(1)
-print("5")
-wait(1)
-print("4")
-wait(1)
-print("3")
-wait(1)
-print("2")
-wait(1)
-print("1")
-  game.Players.LocalPlayer:kick("Whitelist Error")
-end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Example-1811/Documents/main/Example-5%20(AGE)"))()
 
+Notification:Notify(
+    {Title = "Wizard.Lua", Description = "Loaded"},
+    {OutlineColor = Color3.fromRGB(31, 41, 43),Time = 5, Type = "option"},
+    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(31, 41, 43), Callback = function(State) print(tostring(State)) end}
+)
